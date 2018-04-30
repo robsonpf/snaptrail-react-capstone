@@ -3,7 +3,7 @@ import TopNav from './components/TopNav';
 import SignUp from './components/Signup';
 import Login from './components/Login'
 
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
   render() {
@@ -11,8 +11,10 @@ class App extends Component {
       <Router>
         <div className="App">
           <TopNav />
-        <Route path="/login" component={Login}/>
-          <Route path="/signup" component={SignUp}/>
+          <Switch>
+            <Route path="/login" component={Login}/>
+            <Route path="/signup" component={SignUp}/>
+          </Switch>
         </div>
       </Router>
     );
