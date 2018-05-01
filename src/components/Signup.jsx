@@ -18,21 +18,21 @@ export class Signup extends Component {
   state = {
     isValid: true,
     passwordClasses: 'form-control',
-    name: '',
+    username: '',
     email: '',
     password: '',
     verify_password: ''
   }
   userSignup = e => {
     e.preventDefault()
-    let { name, email, password, verify_password } = this.state
+    let { username, email, password, verify_password } = this.state
     if (!password || password !== verify_password || !verify_password) {
       this.setState({
         passwordClasses: this.state.passwordClasses + ' is-invalid',
         isValid: false
       })
     } else {
-      let newUser = {name, email, password}
+      let newUser = {username, email, password}
       console.log('newUser', newUser)
       console.log("this.props.history ===>", this.props.history);
       // this.props.userSignup(newUser)
@@ -48,20 +48,20 @@ export class Signup extends Component {
             style={{
               border: '1px solid #c9c5c2',
               padding: 35,
-              boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)'
+              boxShadow: '0px 5px 15px 0px rgba(0,0,0,0.5)'
             }}
           >
             <Form onSubmit={this.userSignup}>
               <FormGroup>
-                <Label for="name">Name</Label>
+                <Label for="username">Username</Label>
                 <Input
                   type="text"
-                  name="name"
-                  id="name-field"
-                  placeholder="name"
-                  value={this.state.name}
+                  name="username"
+                  id="username-field"
+                  placeholder="username"
+                  value={this.state.username}
                   onChange={e =>
-                    this.setState({ name: e.target.value })
+                    this.setState({ username: e.target.value })
                   }
                 />
               </FormGroup>

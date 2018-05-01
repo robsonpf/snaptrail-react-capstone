@@ -14,7 +14,7 @@ import {
 // import { bindActionCreators } from 'redux'
 // import { userLogin } from '../actions/auth.actions'
 
-class Login extends Component {
+export default class Login extends Component {
   state = {
     email: '',
     password: ''
@@ -36,7 +36,7 @@ getLogin = e => {
             style={{
               border: '1px solid #c9c5c2',
               padding: 35,
-              boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)'
+              boxShadow: '0px 5px 15px 0px rgba(0,0,0,0.5)'
             }}
           >
             <Form onSubmit={this.getLogin}>
@@ -91,4 +91,3 @@ getLogin = e => {
 //   }
 // }
 // export default connect(mapStateToProps, mapDispatchToProps)(Login)
-export default Login
