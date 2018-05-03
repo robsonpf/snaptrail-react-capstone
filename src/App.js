@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import TopNav from './components/TopNav';
 import SignUp from './components/Signup';
-import Login from './components/Login'
-
+import Login from './components/Login';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
-class App extends Component {
+export default class App extends Component {
   render() {
+    console.log('in app');
     return (
       <Router>
         <div className="App">
@@ -20,5 +20,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
