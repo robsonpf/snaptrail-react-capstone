@@ -19,7 +19,7 @@ export default (state = initialState, { type, payload }) => {
     case LOGIN_PENDING:
       return {...state, isLoading: true}
     case LOGIN_SUCCESS:
-      return { ...state, isLoading: false, message: LOGIN_SUCCESS, ...payload}
+      return {...state, isLoading: false, showLoginError: false, message: LOGIN_SUCCESS, ...payload}
     case LOGIN_FAILED:
       return {...state, isLoading: false, showLoginError: true,   ...payload}
     default:
