@@ -10,12 +10,13 @@ import {
   Alert,
   Input
 } from 'reactstrap'
-// import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
-// import { userSignup } from '../actions/auth.actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { userSignup } from '../redux/actions/signup'
 
 export class Signup extends Component {
   state = {
+    isFormValid: true,
     isValid: true,
     passwordClasses: 'form-control',
     username: '',
@@ -23,19 +24,33 @@ export class Signup extends Component {
     password: '',
     verify_password: ''
   }
-  userSignup = e => {
+
+  handleSignup = e => {
     e.preventDefault()
     let { username, email, password, verify_password } = this.state
-    if (!password || password !== verify_password || !verify_password) {
+    console.log('username ', username);
+    console.log('email ', email);
+    console.log('password ', password);
+    if (!username || !email || !password || !verify_password) {
+      this.setState({
+        invalidForm: this.state.invalidForm + 'is-invalid',
+        isFormValid: false
+      })
+    } else if (password !== verify_password) {
       this.setState({
         passwordClasses: this.state.passwordClasses + ' is-invalid',
         isValid: false
       })
-    } else {
+    } else if (username && email && password) {
       let newUser = {username, email, password}
+      this.setState({
+        isValid: true,
+        isFormValid: true
+      })
       console.log('newUser', newUser)
       console.log("this.props.history ===>", this.props.history);
-      // this.props.userSignup(newUser)
+      this.props.userSignup(newUser, this.props.history)
+
     }
   }
 
@@ -51,7 +66,7 @@ export class Signup extends Component {
               boxShadow: '0px 5px 15px 0px rgba(0,0,0,0.5)'
             }}
           >
-            <Form onSubmit={this.userSignup}>
+            <Form onSubmit={this.handleSignup}>
               <FormGroup>
                 <Label for="username">Username</Label>
                 <Input
@@ -106,6 +121,11 @@ export class Signup extends Component {
                 />
                 {!this.state.isValid ? (
                   <Alert color="danger">Passwords do not match</Alert>
+                ) : !this.state.isFormValid ? (
+                  <Alert color="danger">Form must be filled!</Alert>
+                  ) : null}
+              {this.props.showSignupError ? (
+                <Alert color="danger">{this.props.message}</Alert>
                 ) : null}
               </FormGroup>
                 <Button color="primary" type="submit">
@@ -119,11 +139,21 @@ export class Signup extends Component {
   }
 }
 
+const mapStateToProps = (state, props) => {
+  console.log(state, ' state in mapStateToProps');
+  console.log(props, ' props in mapStateToProps');
+  return {
+    message: state.signup.message,
+    showSignupError: state.signup.showSignupError
+  }
+}
+
 // function mapDispatchToProps(dispatch) {
 //   return {
 //     userSignup: bindActionCreators(userSignup, dispatch)
 //   }
 // }
+const mapDispatchToProps = dispatch => bindActionCreators({userSignup}, dispatch)
 
-// export default connect(null, mapDispatchToProps)(Signup)
-export default Signup
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
+// export default Signup
