@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 export default class App extends Component {
   render() {
-    console.log('in app');
     return (
       <Router>
         <div className="App">

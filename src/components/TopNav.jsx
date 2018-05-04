@@ -39,7 +39,7 @@ export default class TopNav extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/Login">Log In</NavLink>
+                <NavLink href="/login">Log In</NavLink>
               </NavItem>
               {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -47,14 +47,14 @@ export default class TopNav extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
+                Option 1
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                Option 2
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                Reset
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown> */}
