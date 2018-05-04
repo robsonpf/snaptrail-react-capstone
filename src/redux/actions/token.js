@@ -2,7 +2,7 @@ import decode from 'jwt-decode'
 
 export const fetchToken = () => {
   try {
-    const token = localStorage.get("token")
+    const token = localStorage.getItem("token")
 
     if (!token) {
       localStorage.removeItem("token")
