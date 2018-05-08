@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
@@ -7,12 +7,16 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem
+} from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchToken } from '../redux/actions/token';
 
-export default class TopNav extends React.Component {
+class TopNav extends Component {
 
   state = {
     isOpen: false
@@ -24,44 +28,68 @@ export default class TopNav extends React.Component {
     });
   }
 
+  handleLogout = () => {
+    localStorage.removeItem("token")
+  }
+
   render() {
     return (
       <div>
-        <Navbar color="primary" dark expand="md">
-          <NavbarBrand href="/">SnapTrails</NavbarBrand>
+        <Navbar
+          color="primary"
+          dark
+          expand="md"
+          className="fixed-top"
+        >
+          <NavbarBrand href="/" >SnapTrails</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink
-                  href="/signup"
-                >Sign Up
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/login">Log In</NavLink>
-              </NavItem>
-              {/* <UncontrolledDropdown nav inNavbar>
+            {!this.props.loggedIn ? (
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <NavLink href="/signup">Sign Up</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/login">Log In</NavLink>
+                </NavItem>
+              </Nav>
+            ) : (
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <NavLink href="/login" onClick={this.handleLogout}>Log Out</NavLink>
+                </NavItem>
+              </Nav>
+            )}
+            {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+              Options
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
+              <DropdownItem>
                 Option 1
-                  </DropdownItem>
-                  <DropdownItem>
+              </DropdownItem>
+              <DropdownItem>
                 Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>
                 Reset
-                  </DropdownItem>
+              </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown> */}
-            </Nav>
+            </UncontrolledDropdown> */}
           </Collapse>
         </Navbar>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state, props) => {
+  return {
+    loggedIn: state.token.loggedIn
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchToken }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopNav)
