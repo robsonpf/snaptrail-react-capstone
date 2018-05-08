@@ -21,7 +21,7 @@ export default (state = initialState, { type, payload }) => {
     case LOGIN_SUCCESS:
       return {...state, isLoading: false, showLoginError: false, message: LOGIN_SUCCESS, ...payload}
     case LOGIN_FAILED:
-      return {...state, isLoading: false, showLoginError: true,   ...payload}
+      return {...state, isLoading: false, showLoginError: true, ...payload}
     default:
       return state
   }
