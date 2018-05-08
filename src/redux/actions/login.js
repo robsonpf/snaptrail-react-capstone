@@ -1,6 +1,7 @@
 import decode from "jwt-decode"
 import { postLogin } from '../api/postLogin'
 
+export const FETCH_TOKEN_SUCCESS = "FETCH_TOKEN_SUCCESS"
 export const LOGIN_PENDING = "LOGIN_PENDING"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAILED = "LOGIN_FAILED"
@@ -14,6 +15,7 @@ export const checkLogin = (user, history) => {
       const token = response.headers.get("Authorization")
       const result = decode(token)
       console.log(result);
+      console.log(dispatch);
 
       dispatch({
         type: LOGIN_SUCCESS,
@@ -22,9 +24,13 @@ export const checkLogin = (user, history) => {
           ...result
         }
       })
-      
+      dispatch({
+        type: FETCH_TOKEN_SUCCESS,
+        payload: token
+      })
+
       localStorage.setItem("token", token)
-      history.push("/profile", token)
+      history.push(`/${result.sub.user}`, token)
     } catch(err) {
       console.log('error = ', err);
       dispatch({
