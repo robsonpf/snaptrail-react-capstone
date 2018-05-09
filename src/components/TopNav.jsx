@@ -16,6 +16,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchToken } from '../redux/actions/token';
 
+const navbar = {backgroundColor: '#283e4a'};
+
 class TopNav extends Component {
 
   state = {
@@ -36,7 +38,7 @@ class TopNav extends Component {
     return (
       <div>
         <Navbar
-          color="primary"
+          style={navbar}
           dark
           expand="md"
           className="fixed-top"
