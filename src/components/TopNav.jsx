@@ -12,6 +12,12 @@ import {
   // DropdownMenu,
   // DropdownItem
 } from 'reactstrap';
+import {
+  Feed,
+  Icon,
+  Image
+} from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchToken } from '../redux/actions/token';
@@ -32,6 +38,7 @@ class TopNav extends Component {
 
   handleLogout = () => {
     localStorage.removeItem("token")
+    this.props.fetchToken()
   }
 
   render() {
@@ -43,22 +50,39 @@ class TopNav extends Component {
           expand="md"
           className="fixed-top"
         >
-          <NavbarBrand href="/" >SnapTrails</NavbarBrand>
+          <Link to="/" style={{ fontSize: 50 }}>
+            SnapTrails
+          </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             {!this.props.loggedIn ? (
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="/signup">Sign Up</NavLink>
+                  <Link to="/signup" className="nav-link">Sign Up</Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/login">Log In</NavLink>
+                  <Link to="/login" className="nav-link">Log In</Link>
                 </NavItem>
               </Nav>
             ) : (
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="/login" onClick={this.handleLogout}>Log Out</NavLink>
+                  <Link
+                    to="/login"
+                    className="nav-link"
+                    onClick={this.handleLogout}
+                  >
+                    <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1diFxbaYWwzCu63oKrGCwwpAXWEkdN4brdI72QNMasIkYRGt4mg" avatar />
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link
+                    to="/login"
+                    className="nav-link"
+                    onClick={this.handleLogout}
+                  >
+                    Log Out
+                  </Link>
                 </NavItem>
               </Nav>
             )}
@@ -87,6 +111,7 @@ class TopNav extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+
   return {
     loggedIn: state.token.loggedIn
   }
