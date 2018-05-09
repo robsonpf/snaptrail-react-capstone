@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import TopNav from './components/TopNav';
 import SignUp from './components/Signup';
 import Login from './components/Login';
+import Profile from './components/Profile';
 import Feed from './components/Feed';
+
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 export default class App extends Component {
@@ -13,8 +15,9 @@ export default class App extends Component {
           <TopNav />
           <Switch>
             <Route exact path="/" component={Feed}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/signup" component={SignUp}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/signup" component={SignUp}/>
+            <Route exact path="/:profile" component={Profile}/>
           </Switch>
         </div>
       </Router>

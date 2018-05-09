@@ -13,11 +13,12 @@ import store from './redux/store'
 const newStore = store()
 
 newStore.dispatch(getAllPosts())
+newStore.dispatch(fetchToken())
 
 ReactDOM.render(
   <Provider
     store={newStore}>
-    <App authenticate={fetchToken()}/>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
