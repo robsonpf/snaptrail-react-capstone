@@ -9,14 +9,15 @@ import {
   Row,
   Col
 } from 'reactstrap'
-// import FaComment from 'react-icons/lib/fa/comment'
+import FaComment from 'react-icons/lib/fa/comment'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { createComment } from '../redux/actions/comments'
 import AddComment from './AddComment'
+import Moment from 'react-moment'
 
 const Post = props => {
-  let { id, user_id, image_url, description, location } = props.post
+  let { id, user_id, image_url, description, location, created_at } = props.post
   console.log("PROPS.POST ====> ", props.post);
   return (
     <Row className="mt-3">
@@ -38,6 +39,16 @@ const Post = props => {
           <CardText>
             {description}
           </CardText>
+            <hr />
+          <Moment fromNow ago>{created_at}</Moment> ago |
+          <FaComment /> {' '} {props.comments.length} {' '}
+          {props.comments.length !== 1 ? 'Comments' : 'Comment'}
+          <AddComment postId={id}/>
+          <ul className="mt-2">
+            {props.comments.map(comment => (
+              <li key={comment.id}>{comment.comment}</li>
+            ))}
+          </ul>
         </CardBody>
         </Card>
       </Col>
@@ -46,14 +57,14 @@ const Post = props => {
 };
 
 const mapStateToProps = (state, props) => {
-  console.log("STATECOMMENTS",  state.comment);
+  console.log("STATECOMMENTS",  state.comments);
   return {
     comments: state.comments.filter(comment => comment.post_id === props.post.id)
   }
 };
 
 const mapDispatchToProps = dispatch =>
-bindActionCreators({})
+bindActionCreators({ dispatch })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
 // export default Post

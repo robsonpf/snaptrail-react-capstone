@@ -5,6 +5,11 @@ import { connect } from 'react-redux'
 import { filterByLocation } from '../redux/actions/filter'
 
 class FilterPosts extends Component {
+  handleFilter = (e) => {
+    e.preventDefault()
+    this.props.filterByLocation(e.target.value)
+  }
+
   render () {
     return (
       <Form inline>
@@ -15,7 +20,7 @@ class FilterPosts extends Component {
           <Input type="text"
                 name="location"
                 id="filter-field"
-                onChange={e => this.props.filterByLocation(e.target.value)}
+                onChange={e => this.handleFilter}
             />
         </FormGroup>
       </Form>

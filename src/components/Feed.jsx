@@ -3,17 +3,21 @@ import Post from './Post'
 import PostList from './PostList'
 import FilterPosts from './FilterPosts'
 import AddPostForm from './AddPostForm'
+import ProfileCard from './AddPostForm'
 import { Container, Row, Col, Button } from 'reactstrap'
+import decode from 'jwt-decode'
 
 class Feed extends Component {
   state = {
-
+    showAddPostForm: false
   }
-
+  toggleForm = () => {
+    this.setState({ showAddPostForm : !this.state.showAddPostForm })
+  }
 
   render() {
     return (
-      <Container className="mt-4">
+      <Container style={{marginTop: 90}}>
         <Row>
           <Col sm={{size:8, offset: 1}}>
             <FilterPosts />

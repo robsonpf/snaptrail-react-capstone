@@ -8,10 +8,12 @@ import 'semantic-ui-css/semantic.min.css';
 import { Provider } from 'react-redux';
 import { fetchToken } from './redux/actions/token'
 import { getAllPosts } from './redux/actions/posts'
+import { fetchComments } from './redux/actions/comments'
 import store from './redux/store'
 
 const newStore = store()
 
+newStore.dispatch(fetchComments())
 newStore.dispatch(getAllPosts())
 newStore.dispatch(fetchToken())
 
