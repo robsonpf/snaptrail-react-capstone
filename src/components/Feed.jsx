@@ -28,7 +28,7 @@ class Feed extends Component {
             <Col sm="2">
               <Button
                 color="secondary"
-                onClick={() => this.setState({ showAddPost :
+                onClick={() => this.setState({ showAddPostForm :
                 !this.state.showAddPostForm})
                 }>
                 Add Post
