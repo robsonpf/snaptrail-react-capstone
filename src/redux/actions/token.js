@@ -7,9 +7,13 @@ export const fetchToken = () => {
   return async dispatch => {
     try {
       const token = localStorage.getItem("token")
-
+console.log(token);
       if (!token) {
         localStorage.removeItem("token")
+        dispatch({
+          type: FETCH_TOKEN_FAILED,
+          payload: token
+        })
         return null
       }
 

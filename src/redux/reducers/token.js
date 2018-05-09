@@ -17,7 +17,7 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_TOKEN_SUCCESS:
       return {...state, ...decode(payload)}
     case FETCH_TOKEN_FAILED:
-      return {...state, ...decode(payload)}
+      return state
     default:
       return state
   }
