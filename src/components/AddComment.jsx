@@ -16,8 +16,9 @@ class AddComment extends Component {
 
   handleCommentSubmit = (e) => {
     e.preventDefault()
+    console.log("THIS.STATE.COMMENT ===>", this.state.comment);
     if (this.state.comment) this.props.createComment({
-      content: this.state.comment,
+      comment: this.state.comment,
       post_id: this.props.postId
     })
     this.setState({ comment: '' })
