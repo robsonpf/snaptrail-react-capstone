@@ -11,6 +11,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+  
+const navbar = {backgroundColor: '#283e4a'};
 
 export default class TopNav extends React.Component {
 
@@ -27,7 +29,7 @@ export default class TopNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="primary" dark expand="md">
+        <Navbar style={navbar} dark expand="md">
           <NavbarBrand href="/">SnapTrails</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
