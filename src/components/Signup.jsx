@@ -148,12 +148,6 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     userSignup: bindActionCreators(userSignup, dispatch)
-//   }
-// }
 const mapDispatchToProps = dispatch => bindActionCreators({userSignup}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup)
-// export default Signup
