@@ -23,7 +23,8 @@ class Login extends Component {
 
   getLogin = async (e) => {
     e.preventDefault()
-    console.log("state", this.state, "history", this.props.history);
+    console.log("state", this.state);
+    console.log("history", this.props.history);
     if (this.state.username && this.state.password) {
       this.props.checkLogin({
         username: this.state.username,
@@ -95,16 +96,3 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => bindActionCreators({ checkLogin }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
-//
-// function mapStateToProps(state) {
-//   return {
-//     showLoginError: state.auth.showLoginError
-//   }
-// }
-//
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     userLogin: bindActionCreators(userLogin, dispatch)
-//   }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Login)
