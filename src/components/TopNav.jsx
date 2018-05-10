@@ -61,8 +61,7 @@ class TopNav extends Component {
             {!this.props.loggedIn ? (
               <Nav className="ml-auto" navbar>
                 <NavItem>
-
-                  <NavLink href="/home">Home</NavLink>
+                  <Link to="/home" className="nav-link">Home</Link>
                 </NavItem>
                 <NavItem>
                   <Link to="/signup" className="nav-link">Sign Up</Link>
@@ -73,6 +72,9 @@ class TopNav extends Component {
               </Nav>
             ) : (
               <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <Link to="/home" className="nav-link">Home</Link>
+                </NavItem>
                 <NavItem>
                   <Link
                     to="/login"
