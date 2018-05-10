@@ -2,12 +2,14 @@ import decode from "jwt-decode"
 
 export const FETCH_TOKEN_SUCCESS = "FETCH_TOKEN_SUCCESS"
 export const FETCH_TOKEN_FAILED = "FETCH_TOKEN_FAILED"
+export const SET_TOKEN_SUCCESS = "SET_TOKEN_SUCCESS"
+export const SET_TOKEN_FAILED = "SET_TOKEN_FAILED"
 
 export const fetchToken = () => {
   return async dispatch => {
     try {
       const token = localStorage.getItem("token")
-console.log(token);
+
       if (!token) {
         localStorage.removeItem("token")
         dispatch({
@@ -35,6 +37,23 @@ console.log(token);
       dispatch({
         type: FETCH_TOKEN_FAILED,
         payload: err
+      })
+    }
+  }
+}
+
+export const setToken = token => {
+  return async dispatch => {
+    try {
+      localStorage.setItem("token", token)
+      dispatch({
+        type: SET_TOKEN_SUCCESS,
+        payload: token
+       })
+    } catch(error) {
+      dispatch({
+        type: SET_TOKEN_FAILED,
+        payload: error
       })
     }
   }

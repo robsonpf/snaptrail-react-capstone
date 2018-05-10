@@ -15,7 +15,8 @@ import {
 import {
   Feed,
   Icon,
-  Image
+  Image,
+  Label
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
@@ -42,6 +43,8 @@ class TopNav extends Component {
   }
 
   render() {
+    console.log(this.props.user_image);
+    console.log(this.props.user);
     return (
       <div>
         <Navbar
@@ -50,7 +53,7 @@ class TopNav extends Component {
           expand="md"
           className="fixed-top"
         >
-          <Link to="/" style={{ fontSize: 50 }}>
+          <Link to="/" style={{ fontSize: 40 }}>
             SnapTrails
           </Link>
           <NavbarToggler onClick={this.toggle} />
@@ -72,7 +75,14 @@ class TopNav extends Component {
                     className="nav-link"
                     onClick={this.handleLogout}
                   >
-                    <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1diFxbaYWwzCu63oKrGCwwpAXWEkdN4brdI72QNMasIkYRGt4mg" avatar />
+                    <Label as="a" image>
+                      <Image
+                        // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1diFxbaYWwzCu63oKrGCwwpAXWEkdN4brdI72QNMasIkYRGt4mg"
+                        src={this.props.user_image}
+                        avatar
+                      />
+                      <Feed.User className="text-success">{this.props.user}</Feed.User>
+                    </Label>
                   </Link>
                 </NavItem>
                 <NavItem>
@@ -111,8 +121,10 @@ class TopNav extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-
+  console.log(state.login);
   return {
+    user: state.token.sub.username,
+    user_image: state.token.sub.user_image,
     loggedIn: state.token.loggedIn
   }
 }
