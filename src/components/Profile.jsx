@@ -19,11 +19,11 @@ import ProfileCard from './ProfileCard'
 class Profile extends Component {
   render() {
     const {
-      sub: { id, user },
+      sub: { id, username, email, user_image  },
       loggedIn,
       exp,
       iat
-    } = decode(this.props.location.state)
+    } = this.props.location.state
     console.log(this.props.match);
 
     return (
@@ -36,11 +36,14 @@ class Profile extends Component {
           </Row> */}
           <Row style={{marginTop: 20}}>
             <Col style={{marginTop: 100}} className="float-left fixed-top" sm={{size: 4, offset: 1}}>
-              <ProfileCard user={user} />
+              <ProfileCard
+                user={username}
+                user_image={user_image}
+              />
             </Col>
             <Col style={{marginTop: 80}} sm={{size: 6, offset: 6}}>
               <h3>id: {id}</h3>
-              <h3>user: {user}</h3>
+              <h3>user: {username}</h3>
               <h3>loggedIn: {loggedIn ? 'true' : 'false'}</h3>
               <h3>exp: {exp}</h3>
               <h3>iat: {iat}</h3>
