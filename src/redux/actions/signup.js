@@ -26,7 +26,7 @@ export const userSignup = (newUser, history) => {
           payload: isSignedUp.message
         })
       }
-      console.log('history ===>', history);
+      // console.log('history ===>', history);
     } catch(err) {
       dispatch({
         type: USER_SIGNUP_FAILED,
