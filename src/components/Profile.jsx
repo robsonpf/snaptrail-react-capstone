@@ -23,14 +23,22 @@ import TopNav from './TopNav'
 class Profile extends Component {
 
   componentWillMount = () => {
-    const { loggedIn, sub: { id } } = decode(localStorage.getItem("token"))
+    const token = localStorage.getItem("token")
 
-    this.setState({
-      // ...this.props.location.state,
-      loggedIn: decode(localStorage.getItem("token")).loggedIn
-    })
+    if (token) {
+      const { loggedIn, sub: { id } } = decode(localStorage.getItem("token"))
 
-    this.props.fetchPostByUser(id)
+      this.setState({
+        // ...this.props.location.state,
+        loggedIn: decode(localStorage.getItem("token")).loggedIn
+      })
+
+      this.props.fetchPostByUser(id)
+    } else {
+      this.setState({
+        loggedIn: false
+      })
+    }
   }
 
   render() {
