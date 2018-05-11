@@ -7,18 +7,20 @@ import {
   Nav,
   NavItem,
   NavLink,
-  // UncontrolledDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
 import {
   Feed,
   Icon,
   Image,
-  Label
+  Label,
+  Dropdown,
+  Menu
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchToken } from '../redux/actions/token';
@@ -42,9 +44,21 @@ class TopNav extends Component {
     this.props.fetchToken()
   }
 
+  handleProfile = (e) => {
+    e.preventDefault()
+    console.log(this.props.history);
+    // this.props.history.push(`/${this.props.user}`, {
+    //   token: this.props.token,
+    //
+    // })
+    console.log("I'm in handleProfile");
+  }
+
   render() {
+    console.log(this.props);
     console.log(this.props.user_image);
     console.log(this.props.user);
+    console.log(this.props);
     return (
       <div>
         <Navbar
@@ -73,23 +87,25 @@ class TopNav extends Component {
             ) : (
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <Link to="/home" className="nav-link">Home</Link>
+                  <Link
+                    to="/chausicle"
+                    className="nav-link"
+                    onClick={this.handleProfile}
+                  >
+                    <Image
+                      // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1diFxbaYWwzCu63oKrGCwwpAXWEkdN4brdI72QNMasIkYRGt4mg"
+                      src={this.props.user_image}
+                      avatar
+                    />
+                    <Feed.User className="text-success">
+                      <Label as="a" image>
+                        {this.props.user}
+                      </Label>
+                    </Feed.User>
+                  </Link>
                 </NavItem>
                 <NavItem>
-                  <Link
-                    to="/login"
-                    className="nav-link"
-                    onClick={this.handleLogout}
-                  >
-                    <Label as="a" image>
-                      <Image
-                        // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1diFxbaYWwzCu63oKrGCwwpAXWEkdN4brdI72QNMasIkYRGt4mg"
-                        src={this.props.user_image}
-                        avatar
-                      />
-                      <Feed.User className="text-success">{this.props.user}</Feed.User>
-                    </Label>
-                  </Link>
+                  <Link to="/home" className="nav-link">Home</Link>
                 </NavItem>
                 <NavItem>
                   <Link
@@ -103,21 +119,21 @@ class TopNav extends Component {
               </Nav>
             )}
             {/* <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-              Options
-                </DropdownToggle>
-                <DropdownMenu right>
-              <DropdownItem>
-                Option 1
-              </DropdownItem>
-              <DropdownItem>
-                Option 2
-              </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>
-                Reset
-              </DropdownItem>
-                </DropdownMenu>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+              Option 1
+                </DropdownItem>
+                <DropdownItem>
+              Option 2
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+              Reset
+                </DropdownItem>
+              </DropdownMenu>
             </UncontrolledDropdown> */}
           </Collapse>
         </Navbar>
@@ -127,11 +143,18 @@ class TopNav extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.login);
+  console.log(state);
+  console.log(props);
   return {
+    token: state.token,
+    sub: state.token.sub,
+    id: state.token.sub.id,
     user: state.token.sub.username,
+    email: state.token.sub.email,
     user_image: state.token.sub.user_image,
-    loggedIn: state.token.loggedIn
+    loggedIn: state.token.loggedIn,
+    exp: state.token.exp,
+    iat: state.token.iat
   }
 }
 

@@ -1,7 +1,9 @@
 import decode from "jwt-decode"
+import { getUserById } from '../api/getUserById'
 
 export const FETCH_TOKEN_SUCCESS = "FETCH_TOKEN_SUCCESS"
 export const FETCH_TOKEN_FAILED = "FETCH_TOKEN_FAILED"
+
 export const SET_TOKEN_SUCCESS = "SET_TOKEN_SUCCESS"
 export const SET_TOKEN_FAILED = "SET_TOKEN_FAILED"
 
@@ -26,12 +28,20 @@ export const fetchToken = () => {
           payload: token
         })
         localStorage.removeItem("token")
+      } else {
+        const result = decode(token)
+        const userReponse = await getUserById(result.sub.id)
+        const signedInUser = await userReponse.json()
+        
+        dispatch({
+          type: FETCH_TOKEN_SUCCESS,
+          payload: {
+            token,
+            ...result,
+            sub: signedInUser
+          }
+        })
       }
-
-      dispatch({
-        type: FETCH_TOKEN_SUCCESS,
-        payload: token
-      })
     } catch(err) {
       console.log('error = ', err);
       dispatch({

@@ -36,7 +36,7 @@ class Login extends Component {
   render() {
     return (
       <Container className="main-wrapper">
-        <Row style={{ marginTop: '15vh' }}>
+        <Row style={{ marginTop: '25vh' }}>
           <Col
             lg={{ size: 6, offset: 3 }}
             style={{
