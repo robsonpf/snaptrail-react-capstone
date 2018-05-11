@@ -4,6 +4,7 @@ import PostList from './PostList'
 import FilterPosts from './FilterPosts'
 import AddPostForm from './AddPostForm'
 import ProfileCard from './AddPostForm'
+import TopNav from './TopNav'
 import { Container, Row, Col, Button } from 'reactstrap'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
@@ -36,34 +37,37 @@ class Feed extends Component {
   render() {
     return (
       this.state.loggedIn ? (
-        <Container style={{marginTop: 90}}>
-          <Row>
-            <Col sm={{size:8, offset: 1}}>
-              <FilterPosts />
-            </Col>
-            <Col sm="2">
-              <Button
-                color="secondary"
-                onClick={() => this.setState({ showAddPostForm :
-                !this.state.showAddPostForm})
-                }>
-                Add Post
-              </Button>
-            </Col>
-          </Row>
-          <Row className="mt-4">
-            <Col sm={{size: 11, offset: 1}}>
-              {this.state.showAddPostForm && (
-                <AddPostForm  toggleForm={this.toggleForm}/>
-              )}
-            </Col>
-          </Row>
-          <Row>
-            <Col className="pr-0" sm={{size: 9, offset: 1}}>
-              <PostList posts={this.props.posts} />
-            </Col>
-          </Row>
-        </Container>
+        <div>
+          <TopNav history={this.props.history}/>
+          <Container style={{marginTop: 90}}>
+            <Row>
+              <Col sm={{size:8, offset: 1}}>
+                <FilterPosts />
+              </Col>
+              <Col sm="2">
+                <Button
+                  color="secondary"
+                  onClick={() => this.setState({ showAddPostForm :
+                  !this.state.showAddPostForm})
+                  }>
+                  Add Post
+                </Button>
+              </Col>
+            </Row>
+            <Row className="mt-4">
+              <Col sm={{size: 11, offset: 1}}>
+                {this.state.showAddPostForm && (
+                  <AddPostForm  toggleForm={this.toggleForm}/>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col className="pr-0" sm={{size: 9, offset: 1}}>
+                <PostList posts={this.props.posts} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
       ) : (
         <Redirect to="/login" />
       )

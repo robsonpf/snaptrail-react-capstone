@@ -47,10 +47,7 @@ class TopNav extends Component {
   handleProfile = (e) => {
     e.preventDefault()
     console.log(this.props.history);
-    // this.props.history.push(`/${this.props.user}`, {
-    //   token: this.props.token,
-    //
-    // })
+    this.props.history.push(`/${this.props.user}`)
     console.log("I'm in handleProfile");
   }
 
