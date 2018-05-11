@@ -17,6 +17,7 @@ import {
   Header,
   Rating
 } from 'semantic-ui-react'
+import TopNav from './TopNav'
 
 const items = [
   {
@@ -84,6 +85,7 @@ class Home extends Component {
 
     return (
     <div>
+      <TopNav history={this.props.history}/>
       <Carousel
         activeIndex={activeIndex}
         next={this.next}
