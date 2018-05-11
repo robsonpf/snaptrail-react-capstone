@@ -150,8 +150,8 @@ class Home extends Component {
 
       <Segment textAlign="center">
         <Header size='huge'>What people are saying about SnapTrails</Header><br/>
-        <Rating maxRating={5} defaultRating={5} disabled icon='star' size='huge' /><br />
-      <blockquote data-reactroot="" data-reactid="1" data-react-checksum="-1189571061">Great for anyone who enjoys the outdoors. Never get lost hiking again. This is a must have for all outdoors lovers.<cite data-reactid="3">Benjamin P.</cite></blockquote>
+        <Rating maxRating={5} defaultRating={5} disabled icon='star' size='huge' /><br /><br />
+        <blockquote data-reactroot="" data-reactid="1" data-react-checksum="-1189571061">Great for anyone who enjoys the outdoors. Never get lost hiking again. This is a must have for all outdoors lovers.<cite data-reactid="3">Benjamin P.</cite></blockquote>
       </Segment>
 
 

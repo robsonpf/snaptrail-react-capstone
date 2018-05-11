@@ -18,11 +18,14 @@ import Moment from 'react-moment'
 
 const Post = props => {
   let { id, user_id, image_url, description, location, created_at } = props.post
-  console.log("PROPS.POST ====> ", props.post);
+  // console.log("PROPS.POST ====> ", props.post);
   return (
     <Row className="mt-3">
       <Col>
         <Card>
+          <CardTitle>
+            {"Robson"}
+          </CardTitle>
           <CardImg
             top
             width="100%"
@@ -40,7 +43,7 @@ const Post = props => {
             {description}
           </CardText>
             <hr />
-          <Moment fromNow ago>{created_at}</Moment> ago |
+          <Moment fromNow ago>{created_at}</Moment> ago | {' '}
           <FaComment /> {' '} {props.comments.length} {' '}
           {props.comments.length !== 1 ? 'Comments' : 'Comment'}
           <AddComment postId={id}/>
@@ -57,7 +60,7 @@ const Post = props => {
 };
 
 const mapStateToProps = (state, props) => {
-  console.log("STATECOMMENTS",  state.comments);
+  // console.log("STATECOMMENTS",  state.comments);
   return {
     comments: state.comments.filter(comment => comment.post_id === props.post.id)
   }
