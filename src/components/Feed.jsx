@@ -10,16 +10,32 @@ import { connect } from 'react-redux'
 import decode from 'jwt-decode'
 
 class Feed extends Component {
+
   state = {
     showAddPostForm: false
   }
+
+  componentWillMount = () => {
+    const token = localStorage.getItem("token")
+
+    if (token) {
+      this.setState({
+        loggedIn: decode(localStorage.getItem("token")).loggedIn
+      })
+    } else {
+      this.setState({
+        loggedIn: false
+      })
+    }
+  }
+
   toggleForm = () => {
     this.setState({ showAddPostForm : !this.state.showAddPostForm })
   }
 
   render() {
     return (
-      this.props.loggedIn ? (
+      this.state.loggedIn ? (
         <Container style={{marginTop: 90}}>
           <Row>
             <Col sm={{size:8, offset: 1}}>
