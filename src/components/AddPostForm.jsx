@@ -6,17 +6,17 @@ import { bindActionCreators } from 'redux';
 
 class AddPostForm extends Component {
   state = {
-    user_id: '',
     image_url: '',
     description: '',
-    location: ''
+    location: '',
+    latitude: '',
+    longitude: ''
   };
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log("This.state ===> ", this.state);
     this.props.createPost(this.state);
-    this.props.toggleForm();
-
     this.props.toggleForm();
   }
 
@@ -27,13 +27,13 @@ class AddPostForm extends Component {
       <Row>
         <Col sm="10">
           <Form onSubmit={this.handleSubmit}>
-            <FormGroup>
+            {/* <FormGroup>
               <Label for="user-id-field">User Id</Label>
             <Input type="text"
                name="user-id"
                id="user-id-field"
                onChange={e => this.setState({ user_id: e.target.value })}/>
-            </FormGroup>
+            </FormGroup> */}
             <FormGroup>
               <Label for="image-field">Image URL</Label>
             <Input type="text"
@@ -54,6 +54,20 @@ class AddPostForm extends Component {
                name="location"
                id="location-field"
                 onChange={e => this.setState({ location: e.target.value })}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="latitude-field">Laditude</Label>
+            <Input type="text"
+               name="latitude"
+               id="latitude-field"
+                onChange={e => this.setState({ latitude: e.target.value })}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="location-field">Longitude</Label>
+            <Input type="text"
+               name="longitude"
+               id="longitude-field"
+                onChange={e => this.setState({ longitude: e.target.value })}/>
             </FormGroup>
             <Button type="submit">Submit</Button>
           </Form>

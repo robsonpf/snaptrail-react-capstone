@@ -29,7 +29,10 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_POSTS_BY_USER_FAILED:
       return payload
     case CREATE_POST_SUCCESS:
-      return [...state, payload]
+      return {
+        ...state,
+        allPosts: [...payload, ...state.allPosts]
+      }
     case CREATE_POST_FAILED:
       return payload
     default:
