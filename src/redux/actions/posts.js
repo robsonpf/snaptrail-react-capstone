@@ -1,23 +1,53 @@
-export const FETCH_POSTS_SUCESS = 'FETCH_POSTS_SUCESS'
+export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
 export const FETCH_POSTS_FAILED = 'FETCH_POSTS_FAILED'
 
-export const CREATE_POST_SUCESS = 'CREATE_POST_SUCESS'
+export const FETCH_POSTS_BY_USER_SUCCESS = 'FETCH_POSTS_BY_USER_SUCCESS'
+export const FETCH_POSTS_BY_USER_FAILED = 'FETCH_POSTS_BY_USER_FAILED'
+
+export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS'
 export const CREATE_POST_FAILED = 'CREATE_POST_FAILED'
-console.log('am i here in action posts');
+
 export const getAllPosts = () => {
   return async dispatch => {
     try {
-      let response = await fetch(`${process.env.REACT_APP_API_URL}/posts`);
-      let posts = await response.json();
-      console.log('posts = ', posts);
+      let response = await fetch(`${process.env.REACT_APP_API_URL}/posts`)
+      let posts = await response.json()
+      console.log('posts = ', posts)
       dispatch({
-        type: FETCH_POSTS_SUCESS,
+        type: FETCH_POSTS_SUCCESS,
         payload: posts
       })
     } catch(err) {
       dispatch({
         type: FETCH_POSTS_FAILED,
         payload: err
+      })
+    }
+  }
+}
+
+export const fetchPostByUser = id => {
+  return async dispatch => {
+    try {
+      let response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${id}/user`, {
+        method: "GET",
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      })
+      let postsByuser = await response.json()
+
+console.log(response);
+console.log(postsByuser);
+
+      dispatch({
+        type: FETCH_POSTS_BY_USER_SUCCESS,
+        payload: postsByuser
+      })
+    } catch(error) {
+      dispatch({
+        type: FETCH_POSTS_BY_USER_FAILED,
+        payload: error
       })
     }
   }
@@ -32,11 +62,11 @@ export const createPost = newPost => {
         headers: {
           'Content-Type': 'application/json'
         }
-      });
-      console.log("RESPONSE ==> ", response);
-      let post = await response.json();
+      })
+      console.log("RESPONSE ==> ", response)
+      let post = await response.json()
       dispatch({
-        type: CREATE_POST_SUCESS,
+        type: CREATE_POST_SUCCESS,
         payload: post
       })
     } catch (err) {
