@@ -7,9 +7,12 @@ const PostList = ({ posts }) => {
   return <div>{listOfPosts}</div>
 };
 
-const mapStateToProps = ({ posts, filter }) => ({
-  posts: posts.filter(post => post.location.toLowerCase().includes(filter))
-});
+const mapStateToProps = ({ posts, filter }, props) => {
+  console.log(props);
+  return {
+    posts: props.posts.filter(post => post.location.toLowerCase().includes(filter))
+  }
+}
 
 export default connect(mapStateToProps, null)(PostList)
 // export default PostList
