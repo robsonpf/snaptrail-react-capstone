@@ -11,7 +11,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import decode from 'jwt-decode'
 import { fetchUsers } from '../redux/actions/users'
-
+import {
+  Segment,
+  Form
+  // Button
+} from 'semantic-ui-react'
 class Feed extends Component {
 
   state = {
@@ -65,7 +69,21 @@ class Feed extends Component {
               </Col>
             </Row>
             <Row>
-              <Col className="pr-0" sm={{size: 9, offset: 1}}>
+              <Col>
+                <Segment inverted>
+                  <Form inverted>
+                    <Form.Input fluid label='Image URL' placeholder='Image URL' />
+                    <Form.Input fluid label='Description' placeholder='Description' />
+                    <Form.Input fluid label='Location' placeholder='Location' />
+                    <Form.Input fluid label='Latitude' placeholder='Latitude' />
+                    <Form.Input fluid label='Longitude' placeholder='Longitude' />
+                    <Form.Checkbox label='I agree to the Terms and Conditions' />
+                    <Button type='submit'>Submit</Button>
+                  </Form>
+                </Segment>
+              </Col>
+              <Col className="pr-0" sm={{size: 6, offset:1}}>
+              {/* <Col className="pr-0" sm={{size: 9, offset: 1}}> */}
                 <PostList posts={this.props.posts} />
               </Col>
             </Row>
