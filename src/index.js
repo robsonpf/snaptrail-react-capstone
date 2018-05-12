@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { fetchToken } from './redux/actions/token'
 import { getAllPosts } from './redux/actions/posts'
 import { fetchComments } from './redux/actions/comments'
+import { fetchUsers } from './redux/actions/users'
 import store from './redux/store'
 
 const newStore = store()
@@ -16,6 +17,7 @@ const newStore = store()
 newStore.dispatch(fetchComments())
 newStore.dispatch(getAllPosts())
 newStore.dispatch(fetchToken())
+newStore.dispatch(fetchUsers())
 
 ReactDOM.render(
   <Provider
