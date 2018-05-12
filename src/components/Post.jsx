@@ -36,16 +36,8 @@ const Post = (props) => {
     <Row className="mt-3">
       <Col>
         <Card>
-          {/* <Comment>
-            <Comment.Avatar src='/assets/images/avatar/small/matt.jpg' />
-            <Comment.Content>
-              <Comment.Author as='a'>Matt</Comment.Author>
-              <Comment.Metadata>
-                <div>Today at 5:42PM</div>
-              </Comment.Metadata>
-            </Comment.Content>
-          </Comment> */}
-          {/* <CardBody> */}
+
+          <CardBody>
             <CardTitle>
               {username}
             </CardTitle>
@@ -55,7 +47,7 @@ const Post = (props) => {
             <CardText>
               {description}
             </CardText>
-          {/* </CardBody> */}
+          </CardBody>
           <CardImg
             top
             width="100%"
