@@ -7,10 +7,10 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem
 } from 'reactstrap';
 import {
   Feed,
@@ -46,16 +46,10 @@ class TopNav extends Component {
 
   handleProfile = (e) => {
     e.preventDefault()
-    console.log(this.props.history);
     this.props.history.push(`/${this.props.user}`)
-    console.log("I'm in handleProfile");
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.props.user_image);
-    console.log(this.props.user);
-    console.log(this.props);
     return (
       <div>
         <Navbar

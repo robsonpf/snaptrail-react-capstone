@@ -11,6 +11,10 @@ import {
   // Label,
   // Input
 } from 'reactstrap'
+import {
+  Responsive,
+  Segment
+} from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -42,14 +46,6 @@ class Profile extends Component {
   }
 
   render() {
-    // const {
-    //   sub: { id, username, email, user_image  },
-    //   loggedIn,
-    //   exp,
-    //   iat
-    // } = this.props.location.state
-    // console.log('this.props in Profile === ', this.props);
-    // console.log(this.props.match);
     return (
       <div>
         {this.state.loggedIn ? (
@@ -62,13 +58,31 @@ class Profile extends Component {
                 </Col>
               </Row> */}
               <Row style={{marginTop: 20}}>
-                <Col style={{marginTop: 100}} className="float-left fixed-top" sm={{size: 3, offset: 1}}>
-                  <ProfileCard
-                    user={this.props.user}
-                    user_image={this.props.user_image}
-                  />
-                </Col>
-                <Col style={{marginTop: 80}} sm={{size: 6, offset: 4}}>
+                {/* <Responsive as={Segment} minWidth={432}> */}
+                <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+                  <Col
+                    style={{marginTop: 100}}
+                    className="float-left fixed-top"
+                    sm={{size: 2, offset: 1}}>
+                    <ProfileCard
+                      user={this.props.user}
+                      user_image={this.props.user_image}
+                    />
+                  </Col>
+                </Responsive>
+                {/* <Responsive as={Segment} maxWidth={431}> */}
+                <Responsive {...Responsive.onlyMobile}>
+                  <Col
+                    style={{marginTop: 100}}
+                    className="float-left"
+                    md={{size: 3, offset: 1}}>
+                    <ProfileCard
+                      user={this.props.user}
+                      user_image={this.props.user_image}
+                    />
+                  </Col>
+                </Responsive>
+                <Col style={{marginTop: 80}} md={{size: 5, offset: 4}}>
                   <PostList posts={this.props.posts}/>
                 </Col>
               </Row>
