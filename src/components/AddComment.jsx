@@ -19,7 +19,8 @@ class AddComment extends Component {
     console.log("THIS.STATE.COMMENT ===>", this.state.comment);
     if (this.state.comment) this.props.createComment({
       comment: this.state.comment,
-      post_id: this.props.postId
+      post_id: this.props.postId,
+      user: this.props.user
     })
     this.setState({ comment: '' })
   }
@@ -43,6 +44,10 @@ class AddComment extends Component {
   }
 }
 
+const mapStateToProps = (state, props) => ({
+  user: state.users.find(user => user.id === state.token.sub.id)
+})
+
 const mapDispatchToProps = dispatch => bindActionCreators({ createComment }, dispatch)
 
-export default connect(null, mapDispatchToProps)(AddComment)
+export default connect(mapStateToProps, mapDispatchToProps)(AddComment)
