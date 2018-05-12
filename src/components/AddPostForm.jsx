@@ -15,7 +15,6 @@ class AddPostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("This.state ===> ", this.state);
     this.props.createPost(this.state);
     this.props.toggleForm();
   }
