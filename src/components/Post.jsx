@@ -18,8 +18,17 @@ import AddComment from './AddComment'
 import Moment from 'react-moment'
 
 const Post = (props) => {
-  let { id, image_url, description, location, created_at } = props.post
-  let { username, user_image } = props.user
+  let {
+    id,
+    user_id,
+    image_url,
+    description,
+    location,
+    created_at,
+    user: { email, username, user_image }
+  } = props.post
+  console.log("email", email, "username", username, "user_image", user_image);
+  // let { username, user_image } = props.user
   // console.log("PROPS.POST ====> ", props.post);
 
   console.log(props);
@@ -38,7 +47,7 @@ const Post = (props) => {
           </Comment> */}
           {/* <CardBody> */}
             <CardTitle>
-              {props.user.username}
+              {username}
             </CardTitle>
             <CardTitle>
               {location}
@@ -85,7 +94,7 @@ const mapStateToProps = (state, props) => {
   console.log('props ', props);
   return {
     comments: state.comments.filter(comment => comment.post_id === props.post.id),
-    user: props.user
+    // user: props.user
   }
 };
 
