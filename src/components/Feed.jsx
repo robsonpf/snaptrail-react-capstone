@@ -65,7 +65,7 @@ class Feed extends Component {
             <Col className="pr-0" sm={{size: 9, offset: 1}}>
               <PostList
                 posts={this.props.posts}
-                users={this.props.users}
+                // users={this.props.users}
               />
             </Col>
           </Row>
