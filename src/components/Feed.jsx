@@ -8,7 +8,9 @@ import TopNav from './TopNav'
 import { Container, Row, Col, Button } from 'reactstrap'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import decode from 'jwt-decode'
+import { fetchUsers } from '../redux/actions/users'
 
 class Feed extends Component {
 
@@ -23,6 +25,7 @@ class Feed extends Component {
       this.setState({
         loggedIn: decode(localStorage.getItem("token")).loggedIn
       })
+      this.props.fetchUsers()
     } else {
       this.setState({
         loggedIn: false
@@ -76,10 +79,17 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+  console.log(state.users);
   return {
     loggedIn: state.token.loggedIn,
-    posts: state.posts.allPosts
+    posts: state.posts.allPosts,
+    users: state.users
   }
 }
 
-export default connect(mapStateToProps, null)(Feed)
+const mapDispatchToProps = dispatch =>
+bindActionCreators({
+  fetchUsers
+}, dispatch )
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)
