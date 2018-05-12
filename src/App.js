@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App" style={{ "background-color": "#f8f8ff" }}>
+        <div className="App">
           <TopNav />
           <Switch>
             <Route exact path="/" component={Feed}/>
