@@ -36,7 +36,6 @@ const Post = (props) => {
     <Row className="mt-3">
       <Col>
         <Card>
-
           <CardBody>
             <CardTitle>
               {username}
