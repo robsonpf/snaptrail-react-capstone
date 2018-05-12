@@ -12,7 +12,11 @@ import {
 import {
   Comment,
   Feed,
-  Icon
+  Icon,
+  Image,
+  Segment,
+  Form,
+  Button
 } from 'semantic-ui-react'
 import FaComment from 'react-icons/lib/fa/comment'
 import { connect } from 'react-redux'
@@ -38,17 +42,22 @@ const Post = (props) => {
   console.log(props);
   return (
     <Row className="mt-3">
-      <Col>
         <Card>
           <CardBody>
-            <CardTitle>
-              {username} <br/>
-            </CardTitle>
-            <Moment fromNow ago>{created_at}</Moment> ago
+            <Image
+              src={user_image}
+              avatar
+            />
+            <Feed.User className="text-primary">
+              <strong>
+                {username}
+              </strong>
+            </Feed.User>
+            <Feed.Date><Moment fromNow ago>{created_at}</Moment> ago</Feed.Date>
             <CardTitle>
               {location}
             </CardTitle>
-            <CardText>
+            <CardText style={{ paddingBottom: 0 }}>
               {description}
             </CardText>
           </CardBody>
@@ -59,55 +68,32 @@ const Post = (props) => {
             alt="Card image cap"
           />
         <CardBody>
-
-          {/* <Feed size='large'>
-            <Feed.Event>
-              <Feed.Label image='/assets/images/avatar/small/elliot.jpg' />
-              <Feed.Content>
-                <Feed.Summary>
-                  <Feed.User>Elliot Fu</Feed.User> added you as a friend
-                  <Feed.Date>1 Hour Ago</Feed.Date>
-                </Feed.Summary>
-                <Feed.Meta>
-                  <Feed.Like>
-                    <Icon name='like' />
-                    4 Likes</Feed.Like>
-                </Feed.Meta>
-              </Feed.Content>
-            </Feed.Event>
-          </Feed> */}
-
           <FaComment /> {' '} {props.comments.length} {' '}
           {props.comments.length !== 1 ? 'Comments' : 'Comment'}
           <AddComment postId={id}/>
-          <ul className="mt-2">
             {props.comments.map(comment => (
-              // <li key={comment.id}>
-                <Feed size='large' key={comment.id}>
-                  <Feed.Event>
-                    <Feed.Label image={comment.user.user_image} />
+                <Feed size='medium' key={comment.id}>
+                <Feed.Event>
+                  <Feed.Label image={comment.user.user_image} />
                     <Feed.Content>
                       <Feed.Summary>
                         <Feed.User>{comment.user.username}</Feed.User>
-                      <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>
+                        <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>
                       </Feed.Summary>
-                      <Feed.Extra text>
+                      <Feed.Extra text style={{fontSize: 12}}>
                         {comment.comment}
                       </Feed.Extra>
                       <Feed.Meta>
-                        {/* <Feed.Like>
-                          <Icon name='like' />
-                          4 Likes</Feed.Like> */}
+                      {/* <Feed.Like>
+                        <Icon name='like' />
+                        4 Likes</Feed.Like> */}
                       </Feed.Meta>
                     </Feed.Content>
                   </Feed.Event>
                 </Feed>
-              // </li>
             ))}
-          </ul>
         </CardBody>
       </Card>
-     </Col>
     </Row>
   )
 };
