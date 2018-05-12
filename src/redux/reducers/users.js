@@ -8,7 +8,7 @@ const initialState = []
 export default (state = initialState, { type, payload }) => {
   switch(type) {
     case FETCH_USERS_SUCCESS:
-      return [...state, ...payload]
+      return [...payload]
     case FETCH_USERS_FAILED:
       return payload
     default:
