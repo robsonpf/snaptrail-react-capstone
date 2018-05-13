@@ -19,6 +19,8 @@ import {
   Button
 } from 'semantic-ui-react'
 import FaComment from 'react-icons/lib/fa/comment'
+import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
+import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { createComment } from '../redux/actions/comments'
@@ -63,33 +65,39 @@ const Post = (props) => {
             src={image_url}
             alt="Card image cap"
           />
-        <CardBody>
-          <FaComment /> {' '} {props.comments.length} {' '}
-          {props.comments.length !== 1 ? 'Comments' : 'Comment'}
-          <AddComment postId={id}/>
+          <CardBody>
+            <FaComment className="text-primary"/>
+            {`  `} {props.comments.length} {`  `}
+            {props.comments.length !== 1 ? 'Comments' : 'Comment'}
+            {`  |  `}
+            <FaThumbsUp className="text-primary"/>
+            {`  `} {props.comments.length} {`  `}
+            {props.comments.length !== 1 ? 'Likes' : 'Like'}
+            <AddComment postId={id}/>
             {props.comments.map(comment => (
-                <Feed size='medium' key={comment.id}>
+              <Feed size='large' key={comment.id}>
                 <Feed.Event>
                   <Feed.Label image={comment.user.user_image} />
-                    <Feed.Content>
-                      <Feed.Summary>
-                        <Feed.User>{comment.user.username}</Feed.User>
-                        <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>
-                      </Feed.Summary>
-                      <Feed.Extra text style={{fontSize: 12}}>
-                        {comment.comment}
-                      </Feed.Extra>
-                      <Feed.Meta>
+                  <Feed.Content>
+                    <Feed.Summary>
+                      <Feed.User>{comment.user.username}</Feed.User>
+                      <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>
+                    </Feed.Summary>
+                    <Feed.Extra text>
+                      {comment.comment}
+                    </Feed.Extra>
+                    <Feed.Meta>
                       {/* <Feed.Like>
                         <Icon name='like' />
-                        4 Likes</Feed.Like> */}
-                      </Feed.Meta>
-                    </Feed.Content>
-                  </Feed.Event>
-                </Feed>
+                      4 Likes</Feed.Like> */}
+                    </Feed.Meta>
+                  </Feed.Content>
+                </Feed.Event>
+              </Feed>
             ))}
-        </CardBody>
-      </Card>
+          </CardBody>
+        </Card>
+      </Col>
     </Row>
   )
 };
