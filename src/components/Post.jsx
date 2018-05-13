@@ -12,7 +12,11 @@ import {
 import {
   Comment,
   Feed,
-  Icon
+  Icon,
+  Image,
+  Segment,
+  Form,
+  Button
 } from 'semantic-ui-react'
 import FaComment from 'react-icons/lib/fa/comment'
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
@@ -33,22 +37,25 @@ const Post = (props) => {
     created_at,
     user: { email, username, user_image }
   } = props.post
-  console.log("email", email, "username", username, "user_image", user_image);
 
-  console.log(props);
   return (
     <Row className="mt-3">
-      <Col>
         <Card>
           <CardBody>
-            <CardTitle>
-              {username} <br/>
-            </CardTitle>
-            <Moment fromNow ago>{created_at}</Moment> ago
+            <Image
+              src={user_image}
+              avatar
+            />
+            <Feed.User className="text-primary">
+              <strong>
+                {username}
+              </strong>
+            </Feed.User>
+            <Feed.Date><Moment fromNow ago>{created_at}</Moment> ago</Feed.Date>
             <CardTitle>
               {location}
             </CardTitle>
-            <CardText>
+            <CardText style={{ paddingBottom: 0 }}>
               {description}
             </CardText>
           </CardBody>
@@ -59,24 +66,6 @@ const Post = (props) => {
             alt="Card image cap"
           />
           <CardBody>
-
-            {/* <Feed size='large'>
-              <Feed.Event>
-              <Feed.Label image='/assets/images/avatar/small/elliot.jpg' />
-              <Feed.Content>
-                <Feed.Summary>
-              <Feed.User>Elliot Fu</Feed.User> added you as a friend
-              <Feed.Date>1 Hour Ago</Feed.Date>
-                </Feed.Summary>
-                <Feed.Meta>
-              <Feed.Like>
-              <Icon name='like' />
-              4 Likes</Feed.Like>
-                </Feed.Meta>
-              </Feed.Content>
-              </Feed.Event>
-            </Feed> */}
-
             <FaComment className="text-primary"/>
             {`  `} {props.comments.length} {`  `}
             {props.comments.length !== 1 ? 'Comments' : 'Comment'}
@@ -123,4 +112,3 @@ const mapDispatchToProps = dispatch =>
 bindActionCreators({ dispatch })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
-// export default Post

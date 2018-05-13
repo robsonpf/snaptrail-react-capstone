@@ -11,7 +11,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import decode from 'jwt-decode'
 import { fetchUsers } from '../redux/actions/users'
-
+import {
+  Segment,
+  Form
+} from 'semantic-ui-react'
 class Feed extends Component {
 
   state = {
@@ -41,31 +44,18 @@ class Feed extends Component {
     return (
       this.state.loggedIn ? (
         <div>
-          <TopNav history={this.props.history}/>
+          <TopNav showFilterPost={true} history={this.props.history}/>
           <Container style={{marginTop: 90}}>
             <Row>
-              <Col sm={{size:8, offset: 1}}>
+              {/* <Col sm={{size:8, offset: 1}}>
                 <FilterPosts />
-              </Col>
-              <Col sm="2">
-                <Button
-                  color="secondary"
-                  onClick={() => this.setState({ showAddPostForm :
-                  !this.state.showAddPostForm})
-                  }>
-                  Add Post
-                </Button>
-              </Col>
-            </Row>
-            <Row className="mt-4">
-              <Col sm={{size: 11, offset: 1}}>
-                {this.state.showAddPostForm && (
-                  <AddPostForm  toggleForm={this.toggleForm}/>
-                )}
-              </Col>
+              </Col> */}
             </Row>
             <Row>
-              <Col className="pr-0" sm={{size: 9, offset: 1}}>
+              <Col>
+                <AddPostForm />
+              </Col>
+              <Col className="pr-0" sm={{size: 6, offset:1}}>
                 <PostList posts={this.props.posts} />
               </Col>
             </Row>

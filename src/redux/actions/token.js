@@ -32,7 +32,7 @@ export const fetchToken = () => {
         const result = decode(token)
         const userReponse = await getUserById(result.sub.id)
         const signedInUser = await userReponse.json()
-        
+
         dispatch({
           type: FETCH_TOKEN_SUCCESS,
           payload: {
@@ -43,7 +43,6 @@ export const fetchToken = () => {
         })
       }
     } catch(err) {
-      console.log('error = ', err);
       dispatch({
         type: FETCH_TOKEN_FAILED,
         payload: err

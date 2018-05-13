@@ -1,4 +1,5 @@
 import decode from "jwt-decode"
+import { getUserById } from '../api/getUserById'
 
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
 export const FETCH_POSTS_FAILED = 'FETCH_POSTS_FAILED'
@@ -14,7 +15,6 @@ export const getAllPosts = () => {
     try {
       let response = await fetch(`${process.env.REACT_APP_API_URL}/posts`)
       let posts = await response.json()
-      // console.log('posts = ', posts)
       dispatch({
         type: FETCH_POSTS_SUCCESS,
         payload: posts
@@ -38,10 +38,6 @@ export const fetchPostByUser = id => {
         }
       })
       let postsByuser = await response.json()
-
-// console.log(response);
-// console.log(postsByuser);
-
       dispatch({
         type: FETCH_POSTS_BY_USER_SUCCESS,
         payload: postsByuser
@@ -59,9 +55,7 @@ export const createPost = newPost => {
   return async dispatch => {
     try {
       let token = localStorage.getItem("token")
-      console.log("what is token", token);
       let user_id = decode(token).sub.id
-      console.log("user_id from posts actions", user_id);
       let response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
         method: 'POST',
         body: JSON.stringify({...newPost, user_id}),
@@ -70,11 +64,12 @@ export const createPost = newPost => {
           'Authorization': token
         }
       })
-     console.log("RESPONSE ==> ", response)
       let post = await response.json()
+      const userReponse = await getUserById(user_id)
+      const signedInUser = await userReponse.json()
       dispatch({
         type: CREATE_POST_SUCCESS,
-        payload: post
+        payload: { ...post[0], user: {...signedInUser}}
       })
     } catch (err) {
       dispatch({
