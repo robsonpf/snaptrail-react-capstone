@@ -23,7 +23,6 @@ export default class ProfileCard extends Component {
         <CardImg
           top
           width="100%"
-          // src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1diFxbaYWwzCu63oKrGCwwpAXWEkdN4brdI72QNMasIkYRGt4mg'
           src={this.props.user_image}
           alt="Grumpy Cat"
         />

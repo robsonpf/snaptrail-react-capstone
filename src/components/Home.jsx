@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Carousel,
   CarouselItem,
@@ -33,13 +33,13 @@ const items = [
 
 class Home extends Component {
   constructor(props) {
-    super(props);
-    this.state = { activeIndex: 0 };
-    this.next = this.next.bind(this);
-    this.previous = this.previous.bind(this);
-    this.goToIndex = this.goToIndex.bind(this);
-    this.onExiting = this.onExiting.bind(this);
-    this.onExited = this.onExited.bind(this);
+    super(props)
+    this.state = { activeIndex: 0 }
+    this.next = this.next.bind(this)
+    this.previous = this.previous.bind(this)
+    this.goToIndex = this.goToIndex.bind(this)
+    this.onExiting = this.onExiting.bind(this)
+    this.onExited = this.onExited.bind(this)
   }
 
   onExiting() {
@@ -52,19 +52,19 @@ class Home extends Component {
 
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
-    this.setState({ activeIndex: nextIndex });
+    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1
+    this.setState({ activeIndex: nextIndex })
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
-    this.setState({ activeIndex: nextIndex });
+    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1
+    this.setState({ activeIndex: nextIndex })
   }
 
   goToIndex(newIndex) {
     if (this.animating) return;
-    this.setState({ activeIndex: newIndex });
+    this.setState({ activeIndex: newIndex })
   }
 
   render() {
@@ -85,7 +85,7 @@ class Home extends Component {
 
     return (
     <div>
-      <TopNav history={this.props.history}/>
+      <TopNav showFilterPost={false} history={this.props.history}/>
       <Carousel
         activeIndex={activeIndex}
         next={this.next}
@@ -95,8 +95,7 @@ class Home extends Component {
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-      </Carousel>
-
+    </Carousel>
       <Jumbotron>
         <Header  as='h1' textAlign='center' color="blue">Your guide to the outdoors</Header>
         <Grid columns={3} relaxed>

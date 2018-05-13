@@ -3,13 +3,6 @@ import {
   Container,
   Row,
   Col,
-  // Alert,
-  // Button,
-  // CardImg,
-  // Form,
-  // FormGroup,
-  // Label,
-  // Input
 } from 'reactstrap'
 import {
   Responsive,
@@ -50,7 +43,7 @@ class Profile extends Component {
       <div>
         {this.state.loggedIn ? (
           <div>
-            <TopNav history={this.props.history}/>
+            <TopNav showFilterPost={false} history={this.props.history}/>
             <Container fluid>
               {/* <Row>
                 <Col sm={{ size: 6, offset: 0 }}>

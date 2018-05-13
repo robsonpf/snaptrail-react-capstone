@@ -35,11 +35,7 @@ const Post = (props) => {
     created_at,
     user: { email, username, user_image }
   } = props.post
-  console.log("email", email, "username", username, "user_image", user_image);
-  // let { username, user_image } = props.user
-  // console.log("PROPS.POST ====> ", props.post);
 
-  console.log(props);
   return (
     <Row className="mt-3">
         <Card>
@@ -100,8 +96,7 @@ const Post = (props) => {
 
 const mapStateToProps = (state, props) => {
   return {
-    comments: state.comments.filter(comment => comment.post_id === props.post.id),
-    // user: props.user
+    comments: state.comments.filter(comment => comment.post_id === props.post.id)
   }
 };
 
@@ -109,4 +104,3 @@ const mapDispatchToProps = dispatch =>
 bindActionCreators({ dispatch })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
-// export default Post

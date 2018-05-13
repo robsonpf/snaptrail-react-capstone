@@ -11,9 +11,9 @@ export const userSignup = (newUser, history) => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newUser)
       })
-      console.log("newUser ====>>>", newUser);
+
       let isSignedUp = await response.json()
-      console.log(isSignedUp, ' === bad request or not');
+
       if (isSignedUp.status !== 400) {
         dispatch({
           type: USER_SIGNUP_SUCCESS,
@@ -26,7 +26,6 @@ export const userSignup = (newUser, history) => {
           payload: isSignedUp.message
         })
       }
-      // console.log('history ===>', history);
     } catch(err) {
       dispatch({
         type: USER_SIGNUP_FAILED,

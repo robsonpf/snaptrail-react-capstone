@@ -28,29 +28,23 @@ export class Signup extends Component {
   handleSignup = e => {
     e.preventDefault()
     let { username, email, password, verify_password } = this.state
-    console.log('username ', username);
-    console.log('email ', email);
-    console.log('password ', password);
-    if (!username || !email || !password || !verify_password) {
-      this.setState({
-        invalidForm: this.state.invalidForm + 'is-invalid',
-        isFormValid: false
-      })
-    } else if (password !== verify_password) {
+      if (!username || !email || !password || !verify_password) {
+        this.setState({
+          invalidForm: this.state.invalidForm + 'is-invalid',
+          isFormValid: false
+        })
+      } else if (password !== verify_password) {
       this.setState({
         passwordClasses: this.state.passwordClasses + ' is-invalid',
         isValid: false
-      })
-    } else if (username && email && password) {
-      let newUser = {username, email, password}
-      this.setState({
-        isValid: true,
-        isFormValid: true
-      })
-      console.log('newUser', newUser)
-      console.log("this.props.history ===>", this.props.history);
+        })
+      } else if (username && email && password) {
+        let newUser = {username, email, password}
+        this.setState({
+          isValid: true,
+          isFormValid: true
+        })
       this.props.userSignup(newUser, this.props.history)
-
     }
   }
 
@@ -140,8 +134,6 @@ export class Signup extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state, ' state in mapStateToProps');
-  console.log(props, ' props in mapStateToProps');
   return {
     message: state.signup.message,
     showSignupError: state.signup.showSignupError

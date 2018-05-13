@@ -38,7 +38,6 @@ export const createComment = ({comment, post_id, user}) => {
         },
         body: JSON.stringify({comment, post_id, user_id})
       })
-      // console.log('what is this response? === ', response);
 
       let newPost = await response.json()
 
