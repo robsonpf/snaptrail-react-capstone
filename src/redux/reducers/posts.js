@@ -31,7 +31,7 @@ export default (state = initialState, { type, payload }) => {
     case CREATE_POST_SUCCESS:
       return {
         ...state,
-        allPosts: [...payload, ...state.allPosts]
+        allPosts: [{...payload}, ...state.allPosts]
       }
     case CREATE_POST_FAILED:
       return payload

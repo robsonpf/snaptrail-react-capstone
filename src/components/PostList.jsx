@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Post from './Post';
+import React from 'react'
+import { connect } from 'react-redux'
+import Post from './Post'
 import { fetchUsers } from '../redux/actions/users'
 
 const PostList = ({ posts, users }) => {

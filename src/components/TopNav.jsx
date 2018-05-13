@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Collapse,
   Navbar,
@@ -6,12 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  // UncontrolledDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem
-} from 'reactstrap';
+  NavLink
+} from 'reactstrap'
 import {
   Feed,
   Icon,
@@ -21,11 +17,12 @@ import {
   Menu
 } from 'semantic-ui-react';
 import { Redirect, Link } from 'react-router-dom'
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchToken } from '../redux/actions/token';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchToken } from '../redux/actions/token'
+import FilterPosts from './FilterPosts'
 
-const navbar = {backgroundColor: '#283e4a'};
+const navbar = {backgroundColor: '#283e4a'}
 
 class TopNav extends Component {
 
@@ -58,9 +55,12 @@ class TopNav extends Component {
           expand="md"
           className="fixed-top"
         >
-          <Link to="/" style={{ fontSize: 40 }}>
+          <Link to="/" style={{ fontSize: 30 }}>
             SnapTrails
           </Link>
+          {this.props.showFilterPost ? (
+              <FilterPosts />
+          ) : null}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             {!this.props.loggedIn ? (
@@ -84,7 +84,6 @@ class TopNav extends Component {
                     onClick={this.handleProfile}
                   >
                     <Image
-                      // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1diFxbaYWwzCu63oKrGCwwpAXWEkdN4brdI72QNMasIkYRGt4mg"
                       src={this.props.user_image}
                       avatar
                     />
@@ -109,23 +108,6 @@ class TopNav extends Component {
                 </NavItem>
               </Nav>
             )}
-            {/* <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-              Option 1
-                </DropdownItem>
-                <DropdownItem>
-              Option 2
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-              Reset
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown> */}
           </Collapse>
         </Navbar>
       </div>
@@ -145,7 +127,8 @@ const mapStateToProps = (state, props) => {
     user_image: state.token.sub.user_image,
     loggedIn: state.token.loggedIn,
     exp: state.token.exp,
-    iat: state.token.iat
+    iat: state.token.iat,
+    showFilterPost: props.showFilterPost
   }
 }
 

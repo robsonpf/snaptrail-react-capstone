@@ -14,7 +14,6 @@ import { fetchUsers } from '../redux/actions/users'
 import {
   Segment,
   Form
-  // Button
 } from 'semantic-ui-react'
 class Feed extends Component {
 
@@ -45,45 +44,18 @@ class Feed extends Component {
     return (
       this.state.loggedIn ? (
         <div>
-          <TopNav history={this.props.history}/>
+          <TopNav showFilterPost={true} history={this.props.history}/>
           <Container style={{marginTop: 90}}>
             <Row>
-              <Col sm={{size:8, offset: 1}}>
+              {/* <Col sm={{size:8, offset: 1}}>
                 <FilterPosts />
-              </Col>
-              <Col sm="2">
-                <Button
-                  color="secondary"
-                  onClick={() => this.setState({ showAddPostForm :
-                  !this.state.showAddPostForm})
-                  }>
-                  Add Post
-                </Button>
-              </Col>
-            </Row>
-            <Row className="mt-4">
-              <Col sm={{size: 11, offset: 1}}>
-                {this.state.showAddPostForm && (
-                  <AddPostForm  toggleForm={this.toggleForm}/>
-                )}
-              </Col>
+              </Col> */}
             </Row>
             <Row>
               <Col>
-                <Segment inverted>
-                  <Form inverted>
-                    <Form.Input fluid label='Image URL' placeholder='Image URL' />
-                    <Form.Input fluid label='Description' placeholder='Description' />
-                    <Form.Input fluid label='Location' placeholder='Location' />
-                    <Form.Input fluid label='Latitude' placeholder='Latitude' />
-                    <Form.Input fluid label='Longitude' placeholder='Longitude' />
-                    <Form.Checkbox label='I agree to the Terms and Conditions' />
-                    <Button type='submit'>Submit</Button>
-                  </Form>
-                </Segment>
+                <AddPostForm />
               </Col>
               <Col className="pr-0" sm={{size: 6, offset:1}}>
-              {/* <Col className="pr-0" sm={{size: 9, offset: 1}}> */}
                 <PostList posts={this.props.posts} />
               </Col>
             </Row>

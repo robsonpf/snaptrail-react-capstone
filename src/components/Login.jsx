@@ -86,8 +86,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log('what is this state.login = ', state.login);
-  console.log('what is this props = ', props);
   return {
     showLoginError: state.login.showLoginError
   }
