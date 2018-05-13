@@ -40,64 +40,63 @@ const Post = (props) => {
 
   return (
     <Row className="mt-3">
-        <Card>
-          <CardBody>
-            <Image
-              src={user_image}
-              avatar
-            />
-            <Feed.User className="text-primary">
-              <strong>
-                {username}
-              </strong>
-            </Feed.User>
-            <Feed.Date><Moment fromNow ago>{created_at}</Moment> ago</Feed.Date>
-            <CardTitle>
-              {location}
-            </CardTitle>
-            <CardText style={{ paddingBottom: 0 }}>
-              {description}
-            </CardText>
-          </CardBody>
-          <CardImg
-            top
-            width="100%"
-            src={image_url}
-            alt="Card image cap"
+      <Card>
+        <CardBody>
+          <Image
+            src={user_image}
+            avatar
           />
-          <CardBody>
-            <FaComment className="text-primary"/>
-            {`  `} {props.comments.length} {`  `}
-            {props.comments.length !== 1 ? 'Comments' : 'Comment'}
-            {`  |  `}
-            <FaThumbsUp className="text-primary"/>
-            {`  `} {props.comments.length} {`  `}
-            {props.comments.length !== 1 ? 'Likes' : 'Like'}
-            <AddComment postId={id}/>
-            {props.comments.map(comment => (
-              <Feed size='large' key={comment.id}>
-                <Feed.Event>
-                  <Feed.Label image={comment.user.user_image} />
-                  <Feed.Content>
-                    <Feed.Summary>
-                      <Feed.User>{comment.user.username}</Feed.User>
-                      <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>
-                    </Feed.Summary>
-                    <Feed.Extra text>
-                      {comment.comment}
-                    </Feed.Extra>
-                    <Feed.Meta>
-                      {/* <Feed.Like>
+          <Feed.User className="text-primary">
+            <strong>
+              {username}
+            </strong>
+          </Feed.User>
+          <Feed.Date><Moment fromNow ago>{created_at}</Moment> ago</Feed.Date>
+          <CardTitle>
+            {location}
+          </CardTitle>
+          <CardText style={{ paddingBottom: 0 }}>
+            {description}
+          </CardText>
+        </CardBody>
+        <CardImg
+          top
+          width="100%"
+          src={image_url}
+          alt="Card image cap"
+        />
+        <CardBody>
+          <FaComment className="text-primary"/>
+          {`  `} {props.comments.length} {`  `}
+          {props.comments.length !== 1 ? 'Comments' : 'Comment'}
+          {`  |  `}
+          <FaThumbsUp className="text-primary"/>
+          {`  `} {props.comments.length} {`  `}
+          {props.comments.length !== 1 ? 'Likes' : 'Like'}
+          <AddComment postId={id}/>
+          {props.comments.map(comment => (
+            <Feed size='large' key={comment.id}>
+              <Feed.Event>
+                <Feed.Label image={comment.user.user_image} />
+                <Feed.Content>
+                  <Feed.Summary>
+                    <Feed.User>{comment.user.username}</Feed.User>
+                    <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>
+                  </Feed.Summary>
+                  <Feed.Extra text>
+                    {comment.comment}
+                  </Feed.Extra>
+                  <Feed.Meta>
+                    {/* <Feed.Like>
                         <Icon name='like' />
-                      4 Likes</Feed.Like> */}
-                    </Feed.Meta>
-                  </Feed.Content>
-                </Feed.Event>
-              </Feed>
-            ))}
-          </CardBody>
-        </Card>
-      </Col>
+                    4 Likes</Feed.Like> */}
+                  </Feed.Meta>
+                </Feed.Content>
+              </Feed.Event>
+            </Feed>
+          ))}
+        </CardBody>
+      </Card>
     </Row>
   )
 };
