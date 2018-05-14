@@ -1,23 +1,11 @@
 import React, { Component } from 'react'
 import {
-  Button,
   Card,
-  CardImg,
-  CardText,
-  CardTitle,
-  Form,
-  FormGroup,
-  Label,
-  Container,
-  Row,
-  Col,
-  Alert,
-  Input
+  CardImg
 } from 'reactstrap'
 
 export default class ProfileCard extends Component {
   render() {
-    console.log(this.props);
     return (
       <Card>
         <CardImg
