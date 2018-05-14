@@ -9,15 +9,7 @@ import {
   Row,
   Col
 } from 'reactstrap'
-import {
-  Comment,
-  Feed,
-  Icon,
-  Image,
-  Segment,
-  Form,
-  Button
-} from 'semantic-ui-react'
+import { Comment, Feed, Image, Button } from 'semantic-ui-react'
 import FaComment from 'react-icons/lib/fa/comment'
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
@@ -28,6 +20,7 @@ import { createLike } from '../redux/actions/likes'
 import { removeLike } from '../redux/actions/likes'
 import AddComment from './AddComment'
 import Moment from 'react-moment'
+import CommentDropDown from './CommentDropDown'
 
 const handleLike = (e, createOrRemoveLike, likeOrDislike, post_id, user_id, like) => {
   e.preventDefault()
@@ -79,53 +72,36 @@ const Post = (props) => {
           alt="Card image cap"
         />
         <CardBody>
-          <FaComment className="text-primary"/>
-          {`  `} {props.comments.length} {`  `}
-          {props.comments.length !== 1 ? 'Comments' : 'Comment'}
-          {`  •  `}
-          <FaThumbsUp className="text-primary"/>
-          {`  `} {props.likes.length} {`  `}
-          {props.likes.length !== 1 ? 'Likes' : 'Like'}
-          {props.isLike ? (
-            <Button
-              style={{ padding: "5px 10px" }}
-              onClick={e => handleLike(e, props.removeLike, "dislike", id, props.userId, props.like)}>
-              <FaThumbsDown className="text-primary"/>Dislike
-            </Button>
-          ) : (
-            <Button
-              style={{ padding: "5px 10px" }}
-              onClick={e => handleLike(e, props.createLike, "like", id, props.userId)}>
-              <FaThumbsUp className="text-primary"/>Like
-            </Button>
-          )}
-          <AddComment postId={id}/>
-          {props.comments.map(comment => (
-            <Feed size='large' key={comment.id}>
-              <Feed.Event>
-                <Feed.Label image={comment.user.user_image} />
-                <Feed.Content>
-                  <Feed.Summary>
-                    <Feed.User>{comment.user.username}</Feed.User>
-                    <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>
-                  </Feed.Summary>
-                  <Feed.Extra text>
-                    {comment.comment}
-                  </Feed.Extra>
-                  <Feed.Meta>
-                    {/* <Feed.Like>
-                        <Icon name='like' />
-                    4 Likes</Feed.Like> */}
-                  </Feed.Meta>
-                </Feed.Content>
-              </Feed.Event>
-            </Feed>
-          ))}
+          <CardText className="text-primary">
+            {`  `} {props.comments.length} {`  `}
+            {props.comments.length !== 1 ? 'Comments' : 'Comment'}
+            {`  •  `}
+
+            {`  `} {props.likes.length} {`  `}
+            {props.likes.length !== 1 ? 'Likes' : 'Like'}
+            {props.isLike ? (
+              <Button
+                style={{ padding: "5px 10px" }}
+                onClick={e => handleLike(e, props.removeLike, "dislike", id, props.userId, props.like)}>
+                <FaThumbsDown className="text-primary"/>Dislike
+              </Button>
+            ) : (
+              <Button
+                style={{ padding: "5px 10px" }}
+                onClick={e => handleLike(e, props.createLike, "like", id, props.userId)}>
+                <FaThumbsUp className="text-primary"/>Like
+              </Button>
+            )}
+          </CardText>
+          <hr/>
+        </CardBody>
+        <CardBody>
+          <CommentDropDown postId={id} comments={props.comments}/>
         </CardBody>
       </Card>
     </Row>
   )
-};
+}
 
 const mapStateToProps = (state, props) => {
   return {
@@ -135,7 +111,7 @@ const mapStateToProps = (state, props) => {
     userId: state.token.sub.id,
     like: state.likes.find(like => (like.user_id === state.token.sub.id && like.post_id === props.post.id))
   }
-};
+}
 
 const mapDispatchToProps = dispatch =>
 bindActionCreators({

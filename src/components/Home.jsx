@@ -95,14 +95,14 @@ class Home extends Component {
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-    </Carousel>
+      </Carousel>
       <Jumbotron>
         <Header  as='h1' textAlign='center' color="blue">Your guide to the outdoors</Header>
         <Grid columns={3} relaxed>
           <Grid.Column>
             <Header as='h2' icon color="blue">
               <br/><Icon name='photo'/><br/>
-                Add media to capture your memories
+              Add media to capture your memories
               <Header.Subheader>
                 <br/> SnapTrails has the largest collection of detailed, hand-curated trail maps so you can hit the trail with confidence. Anytime. Anywhere.
               </Header.Subheader>
@@ -129,13 +129,14 @@ class Home extends Component {
             </Header>
           </Grid.Column>
         </Grid>
-    </Jumbotron>
+      </Jumbotron>
 
-    <Grid columns={2} relaxed>
-      <Grid.Column>
-        <Segment>
-          <Image  src='https://image.shutterstock.com/image-vector/colorful-landscape-hiking-man-taking-260nw-695213989.jpg' size='medium' circular />
-        </Segment>
+      <Grid columns={2} relaxed>
+        <Grid.Column>
+          <Segment>
+            <Image src="https://previews.123rf.com/images/maridav/maridav1304/maridav130400151/19359130-hiking-photographer-taking-pictures-in-grand-canyon-at-hike-by-south-rim-by-bright-angle-trail-young.jpg"/>
+            {/* <Image  src='https://image.shutterstock.com/image-vector/colorful-landscape-hiking-man-taking-260nw-695213989.jpg' size='medium' circular /> */}
+          </Segment>
       </Grid.Column>
       <Grid.Column>
         <Segment basic>
