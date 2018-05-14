@@ -5,15 +5,17 @@ import FilterPosts from './FilterPosts'
 import AddPostForm from './AddPostForm'
 import ProfileCard from './AddPostForm'
 import TopNav from './TopNav'
-import { Container, Row, Col, Button } from 'reactstrap'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import decode from 'jwt-decode'
+import { Container, Row, Col, Button } from 'reactstrap'
 import { fetchUsers } from '../redux/actions/users'
+
 import {
   Segment,
-  Form
+  Form,
+  Responsive
 } from 'semantic-ui-react'
 class Feed extends Component {
 
@@ -47,13 +49,23 @@ class Feed extends Component {
           <TopNav showFilterPost={true} history={this.props.history}/>
           <Container style={{marginTop: 90}}>
             <Row>
-              {/* <Col sm={{size:8, offset: 1}}>
-                <FilterPosts />
-              </Col> */}
-            </Row>
-            <Row>
               <Col>
-                <AddPostForm />
+                <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+                  <Col
+                    style={{marginTop: 100}}
+                    className="float-left fixed-top"
+                    sm={{size: 4, offset: 1}}>
+                    <AddPostForm />
+                  </Col>
+                </Responsive>
+                <Responsive {...Responsive.onlyMobile}>
+                  <Col
+                    style={{marginTop: 100}}
+                    className="float-left"
+                    md={{size: 3, offset: 1}}>
+                    <AddPostForm />
+                  </Col>
+                </Responsive>
               </Col>
               <Col className="pr-0" sm={{size: 6, offset:1}}>
                 <PostList posts={this.props.posts} />
