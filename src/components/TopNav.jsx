@@ -59,7 +59,7 @@ class TopNav extends Component {
             SnapTrails
           </Link>
           {this.props.showFilterPost ? (
-              <FilterPosts />
+            <FilterPosts />
           ) : null}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
