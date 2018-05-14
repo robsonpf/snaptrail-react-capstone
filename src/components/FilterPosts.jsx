@@ -15,24 +15,13 @@ class FilterPosts extends Component {
     return (
       <Form inline>
         <FormGroup className="mb-2 mr-sm-2 mt-2 mb-sm-4">
-             <Input
-               size='small'
-               icon='search'
-               placeholder='Enter a trail name'
-               onChange={this.handleFilter}
-               style={{ height: "30px", marginLeft: "10px" }}
-             />
-          {/* <Label for="filter-field" className="mr-sm-2">
-            Filter by location:
-          </Label>
-          <Input type="text"
-                 size='massive'
-                 icon='search'
-                 placeholder='Search by location'
-                name="location"
-                id="filter-field"
-                onChange={this.handleFilter}
-            /> */}
+          <Input
+            size='small'
+            icon='search'
+            placeholder='Enter a trail name'
+            onChange={this.handleFilter}
+            style={{ height: "30px", marginLeft: "10px" }}
+          />
         </FormGroup>
       </Form>
     )

@@ -24,8 +24,20 @@ import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { createComment } from '../redux/actions/comments'
+import { createLike } from '../redux/actions/likes'
+import { removeLike } from '../redux/actions/likes'
 import AddComment from './AddComment'
 import Moment from 'react-moment'
+
+const handleLike = (e, createOrRemoveLike, likeOrDislike, post_id, user_id, like) => {
+  e.preventDefault()
+  if (likeOrDislike === "like") {
+    createOrRemoveLike({ post_id, user_id })
+  }
+  else if (likeOrDislike === "dislike") {
+    createOrRemoveLike(like.id)
+  }
+}
 
 const Post = (props) => {
   let {
@@ -37,6 +49,7 @@ const Post = (props) => {
     created_at,
     user: { email, username, user_image }
   } = props.post
+
 
   return (
     <Row className="mt-3">
@@ -69,10 +82,23 @@ const Post = (props) => {
           <FaComment className="text-primary"/>
           {`  `} {props.comments.length} {`  `}
           {props.comments.length !== 1 ? 'Comments' : 'Comment'}
-          {`  |  `}
+          {`  •  `}
           <FaThumbsUp className="text-primary"/>
-          {`  `} {props.comments.length} {`  `}
-          {props.comments.length !== 1 ? 'Likes' : 'Like'}
+          {`  `} {props.likes.length} {`  `}
+          {props.likes.length !== 1 ? 'Likes' : 'Like'}
+          {props.isLike ? (
+            <Button
+              style={{ padding: "5px 10px" }}
+              onClick={e => handleLike(e, props.removeLike, "dislike", id, props.userId, props.like)}>
+              <FaThumbsDown className="text-primary"/>Dislike
+            </Button>
+          ) : (
+            <Button
+              style={{ padding: "5px 10px" }}
+              onClick={e => handleLike(e, props.createLike, "like", id, props.userId)}>
+              <FaThumbsUp className="text-primary"/>Like
+            </Button>
+          )}
           <AddComment postId={id}/>
           {props.comments.map(comment => (
             <Feed size='large' key={comment.id}>
@@ -103,11 +129,19 @@ const Post = (props) => {
 
 const mapStateToProps = (state, props) => {
   return {
-    comments: state.comments.filter(comment => comment.post_id === props.post.id)
+    comments: state.comments.filter(comment => comment.post_id === props.post.id),
+    likes: state.likes.filter(like => like.post_id === props.post.id),
+    isLike: state.likes.find(like => (like.user_id === state.token.sub.id && like.post_id === props.post.id)) ? true : false,
+    userId: state.token.sub.id,
+    like: state.likes.find(like => (like.user_id === state.token.sub.id && like.post_id === props.post.id))
   }
 };
 
 const mapDispatchToProps = dispatch =>
-bindActionCreators({ dispatch })
+bindActionCreators({
+  createComment,
+  createLike,
+  removeLike,
+}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
