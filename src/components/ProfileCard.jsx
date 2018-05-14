@@ -24,12 +24,19 @@ export default class ProfileCard extends Component {
           top
           width="100%"
           src={this.props.user_image}
-          alt="Grumpy Cat"
+          alt={this.props.user}
         />
-        <hr className="my-4" />
-        <h3 className="mt-1 text-center">
-          "{`${this.props.user}`}"
-        </h3>
+        <div
+          className="ml-4 mr-4 mt-2 mb-2 pl-4 pr-4 pt-2 pb-2 text-center"
+          style={{ border: "black" }}>
+          <h3 style={{
+            background: "black",
+            boxShadow: "0px 1px 1px 2px gainsboro",
+            color: "ghostwhite"
+          }}>
+            "{`${this.props.user}`}"
+          </h3>
+        </div>
       </Card>
     )
   }
