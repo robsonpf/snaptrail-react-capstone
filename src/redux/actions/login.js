@@ -1,7 +1,6 @@
 import decode from "jwt-decode"
 import { postLogin } from '../api/postLogin'
 import { getUserById } from '../api/getUserById'
-import { setToken } from './token'
 import { SET_TOKEN_SUCCESS } from './token'
 
 export const LOGIN_PENDING = "LOGIN_PENDING"

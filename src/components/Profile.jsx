@@ -5,8 +5,7 @@ import {
   Col,
 } from 'reactstrap'
 import {
-  Responsive,
-  Segment
+  Responsive
 } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
@@ -23,7 +22,7 @@ class Profile extends Component {
     const token = localStorage.getItem("token")
 
     if (token) {
-      const { loggedIn, sub: { id } } = decode(localStorage.getItem("token"))
+      const { sub: { id } } = decode(localStorage.getItem("token"))
 
       this.setState({
         // ...this.props.location.state,

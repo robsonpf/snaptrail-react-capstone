@@ -1,22 +1,19 @@
 import React, { Component } from 'react'
-import Post from './Post'
-import PostList from './PostList'
-import FilterPosts from './FilterPosts'
-import AddPostForm from './AddPostForm'
-import ProfileCard from './AddPostForm'
-import TopNav from './TopNav'
+import {
+  Container,
+  Row,
+  Col
+} from 'reactstrap'
+import decode from 'jwt-decode'
+import { Responsive } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import decode from 'jwt-decode'
-import { Container, Row, Col, Button } from 'reactstrap'
 import { fetchUsers } from '../redux/actions/users'
+import PostList from './PostList'
+import AddPostForm from './AddPostForm'
+import TopNav from './TopNav'
 
-import {
-  Segment,
-  Form,
-  Responsive
-} from 'semantic-ui-react'
 class Feed extends Component {
 
   state = {

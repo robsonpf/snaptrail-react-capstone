@@ -1,4 +1,3 @@
-import decode from 'jwt-decode'
 import {
   FETCH_TOKEN_SUCCESS,
   FETCH_TOKEN_FAILED,
