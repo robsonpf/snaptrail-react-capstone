@@ -45,13 +45,7 @@ class Profile extends Component {
           <div>
             <TopNav showFilterPost={false} history={this.props.history}/>
             <Container fluid>
-              {/* <Row>
-                <Col sm={{ size: 6, offset: 0 }}>
-                <h1 className="text-center">Welcome { user }</h1>
-                </Col>
-              </Row> */}
               <Row style={{marginTop: 20}}>
-                {/* <Responsive as={Segment} minWidth={432}> */}
                 <Responsive minWidth={Responsive.onlyTablet.minWidth}>
                   <Col
                     style={{marginTop: 100}}
@@ -63,7 +57,6 @@ class Profile extends Component {
                     />
                   </Col>
                 </Responsive>
-                {/* <Responsive as={Segment} maxWidth={431}> */}
                 <Responsive {...Responsive.onlyMobile}>
                   <Col
                     style={{marginTop: 100}}
