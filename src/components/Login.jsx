@@ -13,6 +13,7 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { checkLogin } from '../redux/actions/login'
+import TopNav from './TopNav'
 
 class Login extends Component {
   state = {
@@ -36,6 +37,7 @@ class Login extends Component {
   render() {
     return (
       <Container className="main-wrapper">
+        <TopNav />
         <Row style={{ marginTop: '25vh' }}>
           <Col
             lg={{ size: 6, offset: 3 }}
