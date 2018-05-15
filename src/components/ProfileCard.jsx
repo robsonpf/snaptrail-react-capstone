@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  Button,
   Card,
   CardImg,
   CardText,
@@ -12,10 +11,30 @@ import {
   Row,
   Col,
   Alert,
-  Input
+  Input,
+  Button,
+  ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap'
+import { Dropdown, Menu } from 'semantic-ui-react'
+
 
 export default class ProfileCard extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false
+    };
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
   render() {
     console.log(this.props);
     return (
@@ -37,6 +56,20 @@ export default class ProfileCard extends Component {
             "{`${this.props.user}`}"
           </h3>
         </div>
+        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <DropdownToggle caret>
+            Change Photo
+          </DropdownToggle>
+          <DropdownMenu>
+            <Input inverted placeholder='Search...' />
+            {/* <Input></Input> */}
+            {/* <DropdownItem header>Header</DropdownItem>
+              <DropdownItem disabled>Action</DropdownItem>
+              <DropdownItem>Another Action</DropdownItem>
+              <DropdownItem divider />
+            <DropdownItem>Another Action</DropdownItem> */}
+          </DropdownMenu>
+        </ButtonDropdown>
       </Card>
     )
   }

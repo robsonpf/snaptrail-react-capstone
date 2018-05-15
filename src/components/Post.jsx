@@ -93,7 +93,6 @@ const Post = (props) => {
               </Button>
             )}
           </CardText>
-          <hr/>
         </CardBody>
         <CardBody>
           <CommentDropDown postId={id} comments={props.comments}/>
