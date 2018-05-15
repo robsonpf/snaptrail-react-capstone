@@ -5,8 +5,7 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
-  Jumbotron,
-  Button
+  Jumbotron
 } from 'reactstrap';
 import {
   Grid,

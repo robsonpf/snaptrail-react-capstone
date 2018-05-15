@@ -4,13 +4,14 @@ import {
   CardImg,
   CardText,
   CardTitle,
-  CardSubtitle,
   CardBody,
-  Row,
-  Col
+  Row
 } from 'reactstrap'
-import { Comment, Feed, Image, Button } from 'semantic-ui-react'
-import FaComment from 'react-icons/lib/fa/comment'
+import {
+  Feed,
+  Image,
+  Button
+} from 'semantic-ui-react'
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 import { connect } from 'react-redux'
@@ -18,7 +19,6 @@ import { bindActionCreators } from 'redux'
 import { createComment } from '../redux/actions/comments'
 import { createLike } from '../redux/actions/likes'
 import { removeLike } from '../redux/actions/likes'
-import AddComment from './AddComment'
 import Moment from 'react-moment'
 import CommentDropDown from './CommentDropDown'
 
@@ -73,29 +73,28 @@ const Post = (props) => {
         />
         <CardBody>
           <CardText className="text-primary">
-            {`  `} {props.comments.length} {`  `}
-            {props.comments.length !== 1 ? 'Comments' : 'Comment'}
-            {`  •  `}
-
             {`  `} {props.likes.length} {`  `}
             {props.likes.length !== 1 ? 'Likes' : 'Like'}
-            {props.isLike ? (
-              <Button
-                style={{ padding: "5px 10px" }}
-                onClick={e => handleLike(e, props.removeLike, "dislike", id, props.userId, props.like)}>
-                <FaThumbsDown className="text-primary"/>Dislike
-              </Button>
-            ) : (
-              <Button
-                style={{ padding: "5px 10px" }}
-                onClick={e => handleLike(e, props.createLike, "like", id, props.userId)}>
-                <FaThumbsUp className="text-primary"/>Like
-              </Button>
-            )}
+            {`  •  `}
+            {`  `} {props.comments.length} {`  `}
+            {props.comments.length !== 1 ? 'Comments' : 'Comment'}
           </CardText>
         </CardBody>
         <CardBody>
-          <CommentDropDown postId={id} comments={props.comments}/>
+          {props.isLike ? (
+            <Button
+              style={{ padding: "12px 10px", float: "left" }}
+              onClick={e => handleLike(e, props.removeLike, "dislike", id, props.userId, props.like)}>
+              <FaThumbsDown className="text-primary"/>Dislike
+            </Button>
+          ) : (
+            <Button
+              style={{ padding: "12px 10px", float: "left" }}
+              onClick={e => handleLike(e, props.createLike, "like", id, props.userId)}>
+              <FaThumbsUp className="text-primary"/>Like
+            </Button>
+          )}
+          <CommentDropDown style={{ float: "left" }} postId={id} comments={props.comments}/>
         </CardBody>
       </Card>
     </Row>

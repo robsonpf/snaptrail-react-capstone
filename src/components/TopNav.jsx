@@ -3,20 +3,15 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink
 } from 'reactstrap'
 import {
   Feed,
-  Icon,
   Image,
   Label,
-  Dropdown,
-  Menu
 } from 'semantic-ui-react';
-import { Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchToken } from '../redux/actions/token'
@@ -87,7 +82,7 @@ class TopNav extends Component {
                       src={this.props.user_image}
                       avatar
                     />
-                    <Feed.User className="text-success">
+                    <Feed.User className="text-primary">
                       <Label as="a" image>
                         {this.props.user}
                       </Label>

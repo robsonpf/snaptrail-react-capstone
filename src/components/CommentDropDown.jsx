@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, Feed, List } from 'semantic-ui-react'
+import {
+  Accordion,
+  Icon,
+  Feed,
+  List
+} from 'semantic-ui-react'
 import FaComment from 'react-icons/lib/fa/comment'
-import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import AddComment from './AddComment'
-import Post from './Post'
-import { createComment } from '../redux/actions/comments'
 import Moment from 'react-moment'
 
 export default class CommentDropDown extends Component {
@@ -24,19 +26,18 @@ export default class CommentDropDown extends Component {
 
     return (
       <Accordion styled>
-        <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+        <Accordion.Title className="text-primary" active={activeIndex === -1} index={0} onClick={this.handleClick}>
           <Icon name='dropdown' />
-          <FaComment className="text" color/> Comment
-          {/* <FaThumbsUp className="text" />{`   `}Like{`   `} */}
+          <FaComment className="text"/> Comment
         </Accordion.Title>
-        <Accordion.Content active={activeIndex !== 0}  >
+        <Accordion.Content active={activeIndex === -1}  >
 
           {this.props.comments.map(comment => (
-            <List.Item>
-              <Feed size='large' key={comment.id}>
-                <Feed.Event>
+            <List.Item key={comment.id}>
+              <Feed size='large'>
+                <Feed.Event className="mt-4">
                   <Feed.Label image={comment.user.user_image} />
-                  <Feed.Content>
+                  <Feed.Content style={{ margin: "-0.5em 0px -1.64286em 1.14286em" }}>
                     <Feed.Summary>
                       <Feed.User>{comment.user.username}</Feed.User>
                       <Feed.Date><Moment fromNow ago>{comment.created_at}</Moment> ago</Feed.Date>

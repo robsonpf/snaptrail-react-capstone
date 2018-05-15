@@ -1,5 +1,3 @@
-import decode from 'jwt-decode';
-
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS'
 export const FETCH_COMMENTS_FAILED = 'FETCH_COMMENTS_FAILED'
 

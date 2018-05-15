@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   Card,
+
   CardImg,
   CardText,
   CardTitle,
@@ -36,7 +37,6 @@ export default class ProfileCard extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Card>
         <CardImg
