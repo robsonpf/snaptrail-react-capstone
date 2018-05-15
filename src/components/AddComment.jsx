@@ -27,7 +27,7 @@ class AddComment extends Component {
 
   render() {
     return (
-      <Form inline onClick={this.handleCommentSubmit}>
+      <Form onSubmit={this.handleCommentSubmit}>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Input
             type="text"
@@ -38,7 +38,7 @@ class AddComment extends Component {
             value={this.state.comment}
           />
         </FormGroup>
-        <Button>Submit</Button>
+        {/* <Button>Submit</Button> */}
       </Form>
     )
   }

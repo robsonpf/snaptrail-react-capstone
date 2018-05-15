@@ -136,21 +136,24 @@ class Home extends Component {
             <Image src="https://previews.123rf.com/images/maridav/maridav1304/maridav130400151/19359130-hiking-photographer-taking-pictures-in-grand-canyon-at-hike-by-south-rim-by-bright-angle-trail-young.jpg"/>
             {/* <Image  src='https://image.shutterstock.com/image-vector/colorful-landscape-hiking-man-taking-260nw-695213989.jpg' size='medium' circular /> */}
           </Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment basic>
-          <Header as='h1'>Add media to capture your memories</Header>
-          <p>As they say, "a photo is worth a thousand words", but with a date, location, and additional notes, that photo becomes even more valuable. With The Traveler, your photos are no longer static images sitting on a memory card or in a folder on your computer. They represent a complete story of your journey.<br/>
-          You can also record video and audio clips, drop markers on your path, or spend a moment writing a journal entry, all geotagged along your path.</p>
-        </Segment>
-      </Grid.Column>
-    </Grid>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment basic>
+            <Header as='h1'>Add media to capture your memories</Header>
+            <p>As they say, "a photo is worth a thousand words", but with a date, location, and additional notes, that photo
+              becomes even more valuable. With The Traveler, your photos are no longer static images sitting on a memory card
+              or in a folder on your computer. They represent a complete story of your journey.<br/>
+            You can also record video and audio clips, drop markers on your path, or spend a moment writing a journal entry, all geotagged along your path.</p>
+          </Segment>
+        </Grid.Column>
+      </Grid>
 
 
       <Segment textAlign="center">
         <Header size='huge'>What people are saying about SnapTrails</Header><br/>
         <Rating maxRating={5} defaultRating={5} disabled icon='star' size='huge' /><br /><br />
-        <blockquote data-reactroot="" data-reactid="1" data-react-checksum="-1189571061">Great for anyone who enjoys the outdoors. Never get lost hiking again. This is a must have for all outdoors lovers.<cite data-reactid="3">Benjamin P.</cite></blockquote>
+        <blockquote data-reactroot="" data-reactid="1" data-react-checksum="-1189571061">Great for anyone who enjoys the outdoors. Never get lost hiking again.
+          This is a must have for all outdoors lovers.<cite data-reactid="3">Benjamin P.</cite></blockquote>
       </Segment>
 
 
