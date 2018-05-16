@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
   Card,
-
   CardImg,
   CardText,
   CardTitle,
@@ -17,7 +16,6 @@ import {
   ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap'
 import { Dropdown, Menu } from 'semantic-ui-react'
-
 
 export default class ProfileCard extends Component {
 

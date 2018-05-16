@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userSignup } from '../redux/actions/signup'
-
+import TopNav from './TopNav'
 export class Signup extends Component {
   state = {
     isFormValid: true,
@@ -51,6 +51,7 @@ export class Signup extends Component {
   render() {
     return (
       <Container className="main-wrapper">
+        <TopNav showFilterPost={false} history={this.props.history}/>
         <Row style={{ marginTop: '10vh', marginBottom: '10vh' }}>
           <Col
             lg={{ size: 6, offset: 3 }}
