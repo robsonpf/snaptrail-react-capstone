@@ -23,17 +23,21 @@ class GoogleMap extends Component {
   }
 
   render() {
+    console.log(this.props.readOnly, this.props.lat, this.props.lng);
     return (
       <Map
         google={this.props.google}
-        initialCenter={{
+        initialCenter={ !this.props.readOnly ? {
           lat: 37.769,
           lng: -122.446
+        } : {
+          lat: this.props.lat,
+          lng: this.props.lng
         }}
         zoom={11}
-        onClick={this.onMapClicked}
+        onClick={!this.props.readOnly ? this.onMapClicked : null}
       >
-        {this.state.Marker}
+        {!this.props.readOnly ? this.state.Marker : <Marker position={{ lat: this.props.lat, lng: this.props.lng }}/>}
       </Map>
     )
   }
