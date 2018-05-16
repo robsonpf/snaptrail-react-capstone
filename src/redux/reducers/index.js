@@ -7,6 +7,7 @@ import comments from './comments'
 import likes from './likes'
 import filter from './filter'
 import users from './users'
+import maps from './maps'
 
 console.log('in reducer index')
 
@@ -18,5 +19,6 @@ export default combineReducers({
   comments,
   likes,
   filter,
-  users
+  users,
+  maps
 })

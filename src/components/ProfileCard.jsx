@@ -20,7 +20,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 class ProfileCard extends Component {
-
+  
   state = {
     user_image: ''
   }
