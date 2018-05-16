@@ -64,7 +64,6 @@ class ProfileCard extends Component {
             />
           </Form>
         </div>
-
       </Card>
     )
   }
