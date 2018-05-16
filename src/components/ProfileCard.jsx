@@ -11,29 +11,30 @@ import {
   Row,
   Col,
   Alert,
-  Input,
   Button,
-  ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem
+  FormText
 } from 'reactstrap'
-import { Dropdown, Menu } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
+import { updateUserPic } from '../redux/actions/users'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-export default class ProfileCard extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      dropdownOpen: false
-    };
+class ProfileCard extends Component {
+  
+  state = {
+    user_image: ''
   }
 
-  toggle() {
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.updateUserPic(
+      this.props.user_id,
+      this.state.user_image
+    )
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
+      user_image: ""
+    })
   }
-
   render() {
     return (
       <Card>
@@ -53,22 +54,22 @@ export default class ProfileCard extends Component {
           }}>
             "{`${this.props.user}`}"
           </h3>
+          <Form onSubmit={this.handleSubmit}>
+            <Input
+              value={this.state.user_image}
+              onChange={(e) => this.setState({ user_image: e.target.value })}
+              size={"mini"}
+              style={{ width: "100%" }}
+              placeholder="Change Photo"
+            />
+          </Form>
         </div>
-        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle caret>
-            Change Photo
-          </DropdownToggle>
-          <DropdownMenu>
-            <Input inverted placeholder='Search...' />
-            {/* <Input></Input> */}
-            {/* <DropdownItem header>Header</DropdownItem>
-              <DropdownItem disabled>Action</DropdownItem>
-              <DropdownItem>Another Action</DropdownItem>
-              <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem> */}
-          </DropdownMenu>
-        </ButtonDropdown>
+
       </Card>
     )
   }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators({updateUserPic}, dispatch)
+
+export default connect(null, mapDispatchToProps)(ProfileCard)
