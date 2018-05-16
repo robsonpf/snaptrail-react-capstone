@@ -20,7 +20,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 class ProfileCard extends Component {
-  
+
   state = {
     user_image: ''
   }
@@ -70,6 +70,16 @@ class ProfileCard extends Component {
   }
 }
 
+const mapStateToProps = (state, props) => {
+  console.log(state.posts);
+  console.log(state.users);
+  console.log(props);
+  console.log(state.users.find(user => user.id === props.user_id));
+  return {
+    user_image: state.users.length > 0 ? state.users.find(user => user.id === props.user_id).user_image : null
+  }
+}
+
 const mapDispatchToProps = dispatch => bindActionCreators({updateUserPic}, dispatch)
 
-export default connect(null, mapDispatchToProps)(ProfileCard)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
