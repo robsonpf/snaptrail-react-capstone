@@ -80,8 +80,8 @@ class AddPostForm extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    latitude: state.maps.lat,
-    longitude: state.maps.lng
+    latitude: state.maps.latLng.lat,
+    longitude: state.maps.latLng.lng
   }
 }
 
