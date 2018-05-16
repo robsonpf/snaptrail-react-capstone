@@ -25,7 +25,6 @@ class Profile extends Component {
       const { sub: { id } } = decode(localStorage.getItem("token"))
 
       this.setState({
-        // ...this.props.location.state,
         loggedIn: decode(localStorage.getItem("token")).loggedIn
       })
 
@@ -53,6 +52,7 @@ class Profile extends Component {
                     <ProfileCard
                       user={this.props.user}
                       user_image={this.props.user_image}
+                      user_id={this.props.id}
                     />
                   </Col>
                 </Responsive>
@@ -64,6 +64,7 @@ class Profile extends Component {
                     <ProfileCard
                       user={this.props.user}
                       user_image={this.props.user_image}
+                      user_id={this.props.id}
                     />
                   </Col>
                 </Responsive>

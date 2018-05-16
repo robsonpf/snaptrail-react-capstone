@@ -38,7 +38,6 @@ class AddComment extends Component {
             value={this.state.comment}
           />
         </FormGroup>
-        {/* <Button>Submit</Button> */}
       </Form>
     )
   }
