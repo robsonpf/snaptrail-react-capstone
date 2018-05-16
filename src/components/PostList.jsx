@@ -8,7 +8,7 @@ const PostList = ({ posts, users }) => {
   return <div>{listOfPosts}</div>
 };
 
-const mapStateToProps = ({ posts, filter }, props) => {
+const mapStateToProps = ({ posts, filter}, props) => {
   return {
     posts: props.posts.filter(post => post.location.toLowerCase().includes(filter))
   }

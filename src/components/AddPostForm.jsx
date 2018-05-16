@@ -69,7 +69,7 @@ class AddPostForm extends Component {
             Map: Drop Marker on your trail!
           </Label>
           <Card color='teal' style={{ width: "100%", height: "300px" }}>
-            <GoogleMap fluid label='Map'/>
+            <GoogleMap fluid label='Map' readOnly={false}/>
           </Card>
           <Button type='submit'>Submit</Button>
         </Form>
