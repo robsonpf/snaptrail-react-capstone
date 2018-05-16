@@ -119,7 +119,7 @@ const mapStateToProps = (state, props) => {
     id: state.token.sub.id,
     user: state.token.sub.username,
     email: state.token.sub.email,
-    user_image: state.users.length > 0
+    user_image: state.users.length !== 0 && state.token.sub.user_image
       ? state.users.find(user => user.id === state.token.sub.id).user_image
       : null,
     loggedIn: state.token.loggedIn,
