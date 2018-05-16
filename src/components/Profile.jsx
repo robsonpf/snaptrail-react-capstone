@@ -60,7 +60,7 @@ class Profile extends Component {
                   <Col
                     style={{marginTop: 100}}
                     className="float-left"
-                    md={{size: 3, offset: 1}}>
+                    md={{size: 3}}>
                     <ProfileCard
                       user={this.props.user}
                       user_image={this.props.user_image}
@@ -68,7 +68,7 @@ class Profile extends Component {
                     />
                   </Col>
                 </Responsive>
-                <Col style={{marginTop: 80}} md={{size: 5, offset: 4}}>
+                <Col style={{marginTop: 65}} md={{size: 5, offset: 4}}>
                   <PostList posts={this.props.posts}/>
                 </Col>
               </Row>
