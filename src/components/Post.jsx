@@ -40,7 +40,7 @@ const Post = (props) => {
     description,
     location,
     created_at,
-    user: { email, username, user_image }
+    user: { email, username }
   } = props.post
 
 
@@ -49,7 +49,7 @@ const Post = (props) => {
       <Card>
         <CardBody>
           <Image
-            src={user_image}
+            src={props.user_image}
             avatar
           />
           <Feed.User className="text-primary">
@@ -103,6 +103,9 @@ const Post = (props) => {
 
 const mapStateToProps = (state, props) => {
   return {
+    user_image: state.users.length > 0
+      ? state.users.find(user => user.id === props.post.user_id).user_image
+      : null,
     comments: state.comments.filter(comment => comment.post_id === props.post.id),
     likes: state.likes.filter(like => like.post_id === props.post.id),
     isLike: state.likes.find(like => (like.user_id === state.token.sub.id && like.post_id === props.post.id)) ? true : false,

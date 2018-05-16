@@ -74,7 +74,7 @@ class TopNav extends Component {
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <Link
-                    to="/chausicle"
+                    to={`${this.props.user}`}
                     className="nav-link"
                     onClick={this.handleProfile}
                   >
@@ -119,7 +119,9 @@ const mapStateToProps = (state, props) => {
     id: state.token.sub.id,
     user: state.token.sub.username,
     email: state.token.sub.email,
-    user_image: state.token.sub.user_image,
+    user_image: state.users.length > 0
+      ? state.users.find(user => user.id === state.token.sub.id).user_image
+      : null,
     loggedIn: state.token.loggedIn,
     exp: state.token.exp,
     iat: state.token.iat,
