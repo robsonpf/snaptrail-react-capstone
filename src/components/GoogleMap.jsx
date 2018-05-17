@@ -7,6 +7,9 @@ import { setLatLng } from '../redux/actions/maps'
 
 class GoogleMap extends Component {
   state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
     lat: "",
     lng: ""
   }
@@ -19,6 +22,21 @@ class GoogleMap extends Component {
       Marker: <Marker position={{ lat, lng }} />
     })
     this.props.setLatLng({ lat, lng })
+  }
+
+  onMarkerClick = (props, marker, e) => {
+    this.setState({
+      showingInfoWindow: true,
+      activeMarker: marker,
+      selectedPlace: props
+    })
+  }
+
+  onInfoWindowClose = () => {
+    this.setState({
+      activeMarker: null,
+      showingInfoWindow: false
+    })
   }
 
   render() {
@@ -35,7 +53,22 @@ class GoogleMap extends Component {
         zoom={11}
         onClick={!this.props.readOnly ? this.onMapClicked : null}
       >
-        {!this.props.readOnly ? this.state.Marker : <Marker position={{ lat: this.props.lat, lng: this.props.lng }}/>}
+        {!this.props.readOnly ? (
+          this.state.Marker
+        ) : (
+          <Marker
+            onClick={this.onMarkerClick}
+            name={this.props.location}
+            position={{ lat: this.props.lat, lng: this.props.lng }}/>
+        )}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          onClose={this.onInfoWindowClose}
+          visible={this.state.showingInfoWindow}>
+          <div>
+            <h1>{this.state.selectedPlace.name}</h1>
+          </div>
+        </InfoWindow>
       </Map>
     )
   }
