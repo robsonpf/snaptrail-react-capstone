@@ -1,3 +1,5 @@
+import { postSignup } from '../api/postSignup'
+
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING'
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
@@ -6,11 +8,7 @@ export const userSignup = (newUser, history) => {
   return async dispatch => {
     try {
       dispatch({type: USER_SIGNUP_PENDING})
-      let response = await fetch(`${process.env.REACT_APP_API_URL}/signup`, {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newUser)
-      })
+      let response = await postSignup(newUser)
 
       let isSignedUp = await response.json()
 
