@@ -1,19 +1,27 @@
 import decode from "jwt-decode"
 import { getUserById } from '../api/getUserById'
+import { getAllPosts } from '../api/getAllPosts'
+import { getPostsByUserId } from '../api/getPostByUserId'
+import { postPost } from '../api/postPost'
 
+export const FETCH_POSTS_PENDING = 'FETCH_POSTS_PENDING'
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
 export const FETCH_POSTS_FAILED = 'FETCH_POSTS_FAILED'
 
+export const FETCH_POSTS_BY_USER_PENDING = 'FETCH_POSTS_BY_USER_PENDING'
 export const FETCH_POSTS_BY_USER_SUCCESS = 'FETCH_POSTS_BY_USER_SUCCESS'
 export const FETCH_POSTS_BY_USER_FAILED = 'FETCH_POSTS_BY_USER_FAILED'
 
 export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS'
 export const CREATE_POST_FAILED = 'CREATE_POST_FAILED'
 
-export const getAllPosts = () => {
+export const fetchPosts = () => {
   return async dispatch => {
     try {
-      let response = await fetch(`${process.env.REACT_APP_API_URL}/posts`)
+      dispatch({
+        type: FETCH_POSTS_PENDING
+      })
+      let response = await getAllPosts()
       let posts = await response.json()
       dispatch({
         type: FETCH_POSTS_SUCCESS,
@@ -31,12 +39,10 @@ export const getAllPosts = () => {
 export const fetchPostByUser = id => {
   return async dispatch => {
     try {
-      let response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${id}/user`, {
-        method: "GET",
-        headers: {
-          "Authorization": localStorage.getItem("token")
-        }
+      dispatch({
+        type: FETCH_POSTS_BY_USER_PENDING
       })
+      let response = await getPostsByUserId(id, localStorage.getItem("token"))
       let postsByuser = await response.json()
       dispatch({
         type: FETCH_POSTS_BY_USER_SUCCESS,
@@ -56,15 +62,10 @@ export const createPost = newPost => {
     try {
       let token = localStorage.getItem("token")
       let user_id = decode(token).sub.id
-      let response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
-        method: 'POST',
-        body: JSON.stringify({...newPost, user_id}),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': token
-        }
-      })
+
+      let response = await postPost({ ...newPost, user_id }, token)
       let post = await response.json()
+
       const userReponse = await getUserById(user_id)
       const signedInUser = await userReponse.json()
       dispatch({

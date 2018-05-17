@@ -70,10 +70,6 @@ class ProfileCard extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.posts);
-  console.log(state.users);
-  console.log(props);
-  console.log(state.users.find(user => user.id === props.user_id));
   return {
     user_image: state.users.length !== 0 && state.token.sub.user_image
       ? state.users.find(user => user.id === state.token.sub.id).user_image

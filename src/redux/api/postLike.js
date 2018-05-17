@@ -4,8 +4,10 @@ export const postLike = async (newLike, token) => {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
+      "Access-Control-Allow-Origin": `http:localhost:3000`,
       "Authorization": token
     },
+    mode: "cors",
     body: JSON.stringify(newLike)
   })
 }

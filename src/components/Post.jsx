@@ -13,7 +13,9 @@ import {
   Feed,
   Image,
   Button,
-  Label
+  Label,
+  Dimmer,
+  Loader
 } from 'semantic-ui-react'
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
@@ -63,6 +65,12 @@ class Post extends Component {
 
   return (
     <Row className="mt-3">
+      {this.props.isLoading ? (
+        <Dimmer active inverted>
+          <Loader>Fetching Posts</Loader>
+        </Dimmer>
+      ) : null}
+
       <Card>
         <CardBody>
           <Image
@@ -141,6 +149,7 @@ class Post extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    isLoading: state.posts.isLoading,
     showMap: state.maps.showMap,
     user_image: state.users.length > 0
       ? state.users.find(user => user.id === props.post.user_id).user_image

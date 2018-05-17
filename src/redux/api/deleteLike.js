@@ -4,7 +4,9 @@ export const deleteLike = async (id, token) => {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
+      "Access-Control-Allow-Origin": `http:localhost:3000`,
       "Authorization": token
-    }
+    },
+    mode: "cors"
   })
 }

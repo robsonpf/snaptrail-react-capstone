@@ -5,7 +5,9 @@ import {
   Form,
   Button,
   Label,
-  Card
+  Card,
+  Dimmer,
+  Loader
 } from 'semantic-ui-react'
 import { createPost } from '../redux/actions/posts'
 import { connect } from 'react-redux'
@@ -14,12 +16,23 @@ import GoogleMap from './GoogleMap'
 
 class AddPostForm extends Component {
   state = {
+    isLoading: true,
     image_url: '',
     description: '',
     location: '',
     latitude: '',
     longitude: ''
   };
+
+  componentWillMount = () => {
+    console.log(' IS LOADING ');
+    this.setState({ isLoading: true })
+  }
+
+  componentDidMount = () => {
+    console.log(' DONE LOADING ');
+    this.setState({ isLoading: false })
+  }
 
   handleSubmit = e => {
     e.preventDefault()
@@ -69,7 +82,11 @@ class AddPostForm extends Component {
             Map: Drop Marker on your trail!
           </Label>
           <Card color='teal' style={{ width: "100%", height: "300px" }}>
-            <GoogleMap fluid label='Map' readOnly={false}/>
+            {this.state.isLoading ? (
+              <Dimmer active>
+                <Loader>Loading Map</Loader>
+              </Dimmer>
+            ) : <GoogleMap fluid label='Map' readOnly={false}/>}
           </Card>
           <Button type='submit'>Submit</Button>
         </Form>
@@ -80,6 +97,7 @@ class AddPostForm extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    isLoading: state.maps.isLoading,
     latitude: state.maps.latLng.lat,
     longitude: state.maps.latLng.lng
   }

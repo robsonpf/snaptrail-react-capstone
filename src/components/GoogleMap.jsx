@@ -14,8 +14,7 @@ class GoogleMap extends Component {
   onMapClicked = (mapProps, map, clickEvent) => {
     const lat = clickEvent.latLng.lat().toFixed(6)
     const lng = clickEvent.latLng.lng().toFixed(6)
-    console.log('LATITUDE = ', lat);
-    console.log('LONGITUDE = ', lng);
+
     this.setState({
       Marker: <Marker position={{ lat, lng }} />
     })
@@ -23,7 +22,6 @@ class GoogleMap extends Component {
   }
 
   render() {
-    console.log(this.props.readOnly, this.props.lat, this.props.lng);
     return (
       <Map
         google={this.props.google}

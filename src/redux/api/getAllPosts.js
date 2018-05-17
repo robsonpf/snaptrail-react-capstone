@@ -1,5 +1,5 @@
-export const getUserById = async id => {
-  return await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
+export const getAllPosts = async () => {
+  return await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
     method : "GET",
     headers : {
       "Content-Type" : "application/json",
