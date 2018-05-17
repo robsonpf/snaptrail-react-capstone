@@ -110,6 +110,7 @@ class Post extends Component {
                 fluid
                 label='Map'
                 readOnly={true}
+                location={location}
                 lat={latitude}
                 lng={longitude}
               />
