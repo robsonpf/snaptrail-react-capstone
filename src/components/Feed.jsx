@@ -78,7 +78,6 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.users);
   return {
     loggedIn: state.token.loggedIn,
     posts: state.posts.allPosts,

@@ -10,6 +10,10 @@ import {
   Alert,
   Input
 } from 'reactstrap'
+import {
+  Dimmer,
+  Loader
+} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { checkLogin } from '../redux/actions/login'
@@ -19,13 +23,12 @@ class Login extends Component {
   state = {
     username: '',
     password: '',
-    isLoading: false
+    isLoading: true
   }
 
   getLogin = async (e) => {
     e.preventDefault()
-    console.log("state", this.state);
-    console.log("history", this.props.history);
+    
     if (this.state.username && this.state.password) {
       this.props.checkLogin({
         username: this.state.username,
@@ -37,6 +40,12 @@ class Login extends Component {
   render() {
     return (
       <Container className="main-wrapper">
+        {this.props.isLoading ? (
+          <Dimmer active>
+            <Loader>Fetching Data</Loader>
+          </Dimmer>
+        ) : null}
+
         <TopNav />
         <Row style={{ marginTop: '25vh' }}>
           <Col
@@ -89,7 +98,8 @@ class Login extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    showLoginError: state.login.showLoginError
+    showLoginError: state.login.showLoginError,
+    isLoading: state.login.isLoading
   }
 }
 

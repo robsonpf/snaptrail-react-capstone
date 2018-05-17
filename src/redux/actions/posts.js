@@ -4,9 +4,11 @@ import { getAllPosts } from '../api/getAllPosts'
 import { getPostsByUserId } from '../api/getPostByUserId'
 import { postPost } from '../api/postPost'
 
+export const FETCH_POSTS_PENDING = 'FETCH_POSTS_PENDING'
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
 export const FETCH_POSTS_FAILED = 'FETCH_POSTS_FAILED'
 
+export const FETCH_POSTS_BY_USER_PENDING = 'FETCH_POSTS_BY_USER_PENDING'
 export const FETCH_POSTS_BY_USER_SUCCESS = 'FETCH_POSTS_BY_USER_SUCCESS'
 export const FETCH_POSTS_BY_USER_FAILED = 'FETCH_POSTS_BY_USER_FAILED'
 
@@ -16,6 +18,9 @@ export const CREATE_POST_FAILED = 'CREATE_POST_FAILED'
 export const fetchPosts = () => {
   return async dispatch => {
     try {
+      dispatch({
+        type: FETCH_POSTS_PENDING
+      })
       let response = await getAllPosts()
       let posts = await response.json()
       dispatch({
@@ -34,6 +39,9 @@ export const fetchPosts = () => {
 export const fetchPostByUser = id => {
   return async dispatch => {
     try {
+      dispatch({
+        type: FETCH_POSTS_BY_USER_PENDING
+      })
       let response = await getPostsByUserId(id, localStorage.getItem("token"))
       let postsByuser = await response.json()
       dispatch({
