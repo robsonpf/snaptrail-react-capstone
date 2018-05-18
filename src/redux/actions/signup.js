@@ -1,5 +1,5 @@
 import { postSignup } from '../api/postSignup'
-
+import { CREATE_USER_SUCCESS } from './users'
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING'
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'

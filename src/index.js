@@ -14,11 +14,11 @@ import store from './redux/store'
 
 const newStore = store()
 
+newStore.dispatch(fetchUsers())
 newStore.dispatch(fetchToken())
 newStore.dispatch(fetchPosts())
 newStore.dispatch(fetchComments())
 newStore.dispatch(fetchLikes())
-newStore.dispatch(fetchUsers())
 
 ReactDOM.render(
   <Provider
