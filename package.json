@@ -5,8 +5,11 @@
   "dependencies": {
     "bootswatch": "^4.1.1",
     "dotenv": "^5.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "fetch-mock": "^6.4.2",
     "google-maps-react": "^2.0.2",
-    "jest": "^22.4.3",
+    "jest-enzyme": "^6.0.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.1",
     "react": "^16.3.2",
@@ -17,9 +20,11 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
+    "react-test-renderer": "^16.3.2",
     "reactstrap": "^5.0.0",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.1",
     "redux-thunk": "^2.2.0",
     "save": "^2.3.2",
     "semantic-ui-css": "^2.3.1",
@@ -29,6 +34,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.4.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "case-sensitive-paths-webpack-plugin": "^2.1.2",
+    "deep-freeze": "^0.0.1",
+    "jest": "^22.4.3",
+    "nyc": "^11.8.0"
   }
 }
