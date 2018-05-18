@@ -21,7 +21,8 @@ class AddPostForm extends Component {
     description: '',
     location: '',
     latitude: '',
-    longitude: ''
+    longitude: '',
+    showMap: true
   };
 
   componentWillMount = () => {
@@ -30,6 +31,10 @@ class AddPostForm extends Component {
 
   componentDidMount = () => {
     this.setState({ isLoading: false })
+  }
+
+  handleToggleMap = () => {
+    this.setState({ showMap: !this.state.showMap })
   }
 
   handleSubmit = e => {
@@ -59,35 +64,53 @@ class AddPostForm extends Component {
   render() {
     return (
       <Segment style={{backgroundColor:"#4D6A7F"}} inverted>
-        <Form inverted style={{backgroundColor:"#4D6A7F"}} onSubmit={this.handleSubmit}>
-          <Form.Input
-            value={this.state.image_url}
-            fluid label='Image URL'
-            placeholder='Image URL'
-            onChange={e => this.setState({ image_url: e.target.value })}/>
-          <Form.Input
-            value={this.state.description}
-            fluid label='Description'
-            placeholder='Description'
-            onChange={e => this.setState({ description: e.target.value })}/>
-          <Form.Input
-            value={this.state.location}
-            fluid label='Location'
-            placeholder='Location'
-            onChange={e => this.setState({ location: e.target.value })}/>
-          <Label image as='a' size={"big"} className="text-primary">
-            <img src='http://www.iosicongallery.com/img/1024/google-maps-2014-11-12.png' />
-            Map: Drop Marker on your trail!
-          </Label>
-          <Card color='teal' style={{ width: "100%", height: "300px" }}>
+        <Label
+          as='a'
+          color='orange'
+          icon={ !this.state.showMap ? 'marker' : 'camera'}
+          content={ !this.state.showMap ? 'Show all SnapTrail Posts' : 'Add a SnapTrail'}
+          ribbon='left'
+          onClick={ this.handleToggleMap }
+        ></Label>
+        {this.state.showMap ? (
+          <Card color='teal' style={{ width: "100%", height: "500px" }}>
             {this.state.isLoading ? (
               <Dimmer active>
                 <Loader>Loading Map</Loader>
               </Dimmer>
-            ) : <GoogleMap fluid label='Map' readOnly={false}/>}
+            ) : <GoogleMap fluid label='Map' readOnly={true} showAll={true}/>}
           </Card>
-          <Button type='submit'>Submit</Button>
-        </Form>
+        ) : (
+          <Form inverted style={{backgroundColor:"#4D6A7F"}} onSubmit={this.handleSubmit}>
+            <Form.Input
+              value={this.state.image_url}
+              fluid label='Image URL'
+              placeholder='Image URL'
+              onChange={e => this.setState({ image_url: e.target.value })}/>
+            <Form.Input
+              value={this.state.description}
+              fluid label='Description'
+              placeholder='Description'
+              onChange={e => this.setState({ description: e.target.value })}/>
+            <Form.Input
+              value={this.state.location}
+              fluid label='Location'
+              placeholder='Location'
+              onChange={e => this.setState({ location: e.target.value })}/>
+            <Label image as='a' size={"big"} className="text-primary">
+              <img src='http://www.iosicongallery.com/img/1024/google-maps-2014-11-12.png' />
+              Map: Drop Marker on your trail!
+            </Label>
+            <Card color='teal' style={{ width: "100%", height: "300px" }}>
+              {this.state.isLoading ? (
+                <Dimmer active>
+                  <Loader>Loading Map</Loader>
+                </Dimmer>
+              ) : <GoogleMap fluid label='Map' readOnly={false}/>}
+            </Card>
+            <Button type='submit'>Submit</Button>
+          </Form>
+        )}
       </Segment>
     )
   }

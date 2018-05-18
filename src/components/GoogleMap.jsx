@@ -46,21 +46,23 @@ class GoogleMap extends Component {
         initialCenter={ !this.props.readOnly ? {
           lat: 37.769,
           lng: -122.446
+        } : this.props.showAll ? {
+          lat: 37.769,
+          lng: -122.446
         } : {
           lat: this.props.lat,
           lng: this.props.lng
         }}
-        zoom={11}
+        zoom={this.props.showAll ? 6 : 11}
         onClick={!this.props.readOnly ? this.onMapClicked : null}
       >
-        {!this.props.readOnly ? (
+        {!this.props.readOnly ?
           this.state.Marker
-        ) : (
-          <Marker
-            onClick={this.onMarkerClick}
-            name={this.props.location}
-            position={{ lat: this.props.lat, lng: this.props.lng }}/>
-        )}
+        : !this.props.showAll ?
+          <Marker position={{ lat: this.props.lat, lng: this.props.lng }}/>
+        : this.props.posts.map(post => {
+          return <Marker position={{ lat: post.latitude, lng: post.longitude }}/>
+        })}
         <InfoWindow
           marker={this.state.activeMarker}
           onClose={this.onInfoWindowClose}
@@ -74,8 +76,10 @@ class GoogleMap extends Component {
   }
 }
 
+const mapStateToProps = ({ posts }) => ({ posts: posts.allPosts })
+
 const mapDispatchToProps = dispatch => bindActionCreators({ setLatLng }, dispatch)
 
-export default connect(null, mapDispatchToProps)(GoogleApiWrapper({
+export default connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({
   apiKey: `${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`
 })(GoogleMap))

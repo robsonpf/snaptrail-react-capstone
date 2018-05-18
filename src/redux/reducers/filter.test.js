@@ -6,7 +6,7 @@ describe("filter reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual("")
   })
-
+  
   it("should handle FILTER_POSTS_BY_LOCATION", () => {
     const currentState = {}
     deepFreeze(currentState)

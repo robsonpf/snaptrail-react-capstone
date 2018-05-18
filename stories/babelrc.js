@@ -1,3 +1,4 @@
 module.exports = {
-  extends: ['react-app']
+  extends: ['react-app'],
+  "presets": ["@babel/preset-env"]
 }
