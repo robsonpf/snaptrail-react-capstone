@@ -12,7 +12,7 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userSignup } from '../redux/actions/signup'
+import { createUser } from '../redux/actions/users'
 import TopNav from './TopNav'
 export class Signup extends Component {
   state = {
@@ -44,7 +44,7 @@ export class Signup extends Component {
           isValid: true,
           isFormValid: true
         })
-      this.props.userSignup(newUser, this.props.history)
+      this.props.createUser(newUser, this.props.history)
     }
   }
 
@@ -141,6 +141,6 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({userSignup}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ createUser }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup)

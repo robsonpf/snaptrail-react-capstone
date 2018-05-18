@@ -111,6 +111,7 @@ class TopNav extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+  console.log(state.users);
   return {
     token: state.token,
     sub: state.token.sub,
