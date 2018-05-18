@@ -118,14 +118,14 @@ export class Signup extends Component {
                   <Alert color="danger">Passwords do not match</Alert>
                 ) : !this.state.isFormValid ? (
                   <Alert color="danger">Form must be filled!</Alert>
-                  ) : null}
-              {this.props.showSignupError ? (
-                <Alert color="danger">{this.props.message}</Alert>
+                ) : null}
+                {this.props.showSignupError ? (
+                  <Alert color="danger">{this.props.message}</Alert>
                 ) : null}
               </FormGroup>
-                <Button color="primary" type="submit">
-                  Submit
-                </Button>
+              <Button color="primary" type="submit">
+                Submit
+              </Button>
             </Form>
           </Col>
         </Row>
