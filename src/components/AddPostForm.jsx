@@ -26,12 +26,10 @@ class AddPostForm extends Component {
   };
 
   componentWillMount = () => {
-    console.log(' IS LOADING ');
     this.setState({ isLoading: true })
   }
 
   componentDidMount = () => {
-    console.log(' DONE LOADING ');
     this.setState({ isLoading: false })
   }
 
