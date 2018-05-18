@@ -15,7 +15,9 @@ import {
   Button,
   Label,
   Dimmer,
-  Loader
+  Loader,
+  Dropdown,
+  Link
 } from 'semantic-ui-react'
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
@@ -73,6 +75,8 @@ class Post extends Component {
 
       <Card>
         <CardBody>
+          {/* <Link></Link> */}
+          <Dropdown placeholder='Select Friend' fluid selection options={1, 2, 3}/>
           <Image
             src={this.props.user_image}
             avatar
