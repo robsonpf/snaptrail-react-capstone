@@ -5,7 +5,11 @@ import {
   Col
 } from 'reactstrap'
 import decode from 'jwt-decode'
-import { Responsive } from 'semantic-ui-react'
+import {
+  Responsive,
+  Dimmer,
+  Loader
+ } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -45,6 +49,10 @@ class Feed extends Component {
         <div>
           <TopNav showFilterPost={true} history={this.props.history}/>
           <Container style={{marginTop: 90}}>
+            {this.props.isLoading ?
+              <Dimmer active>
+                <Loader>Fetching Posts</Loader>
+              </Dimmer> : null}
             <Row>
               <Col>
                 <Responsive minWidth={Responsive.onlyTablet.minWidth}>
@@ -79,6 +87,7 @@ class Feed extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    isLoading: state.posts.isLoading,
     loggedIn: state.token.loggedIn,
     posts: state.posts.allPosts,
     users: state.users

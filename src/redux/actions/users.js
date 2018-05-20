@@ -32,9 +32,10 @@ export const fetchUsers = () => {
 export const createUser = (newUser, history) => {
   return async dispatch => {
     try {
+      console.log(newUser);
       let response = await postSignup(newUser)
       let isSignedUp = await response.json()
-
+      console.log(isSignedUp);
       if (isSignedUp.status !== 400) {
         dispatch({
           type: CREATE_USER_SUCCESS,
