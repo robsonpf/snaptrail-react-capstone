@@ -16,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_USERS_FAILED:
       return payload
     case CREATE_USER_SUCCESS:
-      return [...state, ...payload]
+      return [...state, {...payload}]
     case CREATE_USER_FAILED:
       return payload
     case UPDATE_USER_IMG_SUCCESS:

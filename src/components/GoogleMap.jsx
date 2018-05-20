@@ -18,10 +18,20 @@ class GoogleMap extends Component {
     const lat = clickEvent.latLng.lat().toFixed(6)
     const lng = clickEvent.latLng.lng().toFixed(6)
 
-    this.setState({
-      Marker: <Marker position={{ lat, lng }} />
-    })
-    this.props.setLatLng({ lat, lng })
+    if (!this.props.readOnly) {
+      this.setState({
+        Marker: <Marker position={{ lat, lng }} />
+      })
+      this.props.setLatLng({ lat, lng })
+    }
+
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        activeMarker: null,
+        showingInfoWindow: false
+      });
+    }
+
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -54,21 +64,28 @@ class GoogleMap extends Component {
           lng: this.props.lng
         }}
         zoom={this.props.showAll ? 6 : 11}
-        onClick={!this.props.readOnly ? this.onMapClicked : null}
+        onClick={this.onMapClicked}
       >
         {!this.props.readOnly ?
           this.state.Marker
         : !this.props.showAll ?
-          <Marker position={{ lat: this.props.lat, lng: this.props.lng }}/>
-        : this.props.posts.map(post => {
-          return <Marker position={{ lat: post.latitude, lng: post.longitude }}/>
-        })}
+          <Marker
+            name={this.props.location}
+            onClick={this.onMarkerClick}
+            position={{ lat: this.props.lat, lng: this.props.lng }}/>
+        : this.props.posts.map(post =>
+          <Marker
+            key={post.id}
+            name={post.location}
+            onClick={this.onMarkerClick}
+            position={{ lat: post.latitude, lng: post.longitude }}
+          />)}
         <InfoWindow
           marker={this.state.activeMarker}
           onClose={this.onInfoWindowClose}
           visible={this.state.showingInfoWindow}>
           <div>
-            <h1>{this.state.selectedPlace.name}</h1>
+            <h1 style={{ color: "black" }}>{this.state.selectedPlace.name}</h1>
           </div>
         </InfoWindow>
       </Map>
