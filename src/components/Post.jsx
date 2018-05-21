@@ -49,10 +49,6 @@ class Post extends Component {
   }
 
   handleDelete = id => {
-    console.log("this.state.fromUser  ======>>>", this.props.fromUser);
-    console.log("this.props.id", id);
-    console.log("this.props.userId", this.props.userId)
-
     if (this.props.fromUser) this.props.deleteUsersPost(id, this.props.userId)
   }
 

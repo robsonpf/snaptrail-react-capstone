@@ -83,7 +83,6 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log('mapStateToProps === ', state.users);
   return {
     posts: state.posts.userPosts,
     token: state.token,

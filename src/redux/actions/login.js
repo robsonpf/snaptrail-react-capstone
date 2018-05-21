@@ -43,7 +43,6 @@ export const checkLogin = (user, history) => {
         sub: signedInUser
       })
     } catch(err) {
-      // console.log('error = ', err);
       dispatch({
         type: LOGIN_FAILED,
         payload: err
