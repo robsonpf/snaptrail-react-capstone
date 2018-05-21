@@ -9,8 +9,6 @@ import filter from './filter'
 import users from './users'
 import maps from './maps'
 
-console.log('in reducer index')
-
 export default combineReducers({
   token,
   login,

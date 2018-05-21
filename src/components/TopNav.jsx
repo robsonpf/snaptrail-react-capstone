@@ -50,9 +50,15 @@ class TopNav extends Component {
           expand="md"
           className="fixed-top"
         >
-          <Link to="/" style={{ fontSize: 30 }}>
-            SnapTrails
+          <Link to="/">
+            <Label as='a' color='blue' image size="huge">
+              <img src="SnapTrails.png" />
+              SnapTrails
+            </Label>
           </Link>
+          {/* <Link to="/" style={{ fontSize: 30 }}>
+            SnapTrails
+          </Link> */}
           {this.props.showFilterPost ? (
             <FilterPosts />
           ) : null}
@@ -89,10 +95,10 @@ class TopNav extends Component {
                     </Feed.User>
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={{ paddingTop: "3.5px" }}>
                   <Link to="/home" className="nav-link">Home</Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={{ paddingTop: "3.5px" }}>
                   <Link
                     to="/login"
                     className="nav-link"
@@ -111,7 +117,6 @@ class TopNav extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.users);
   return {
     token: state.token,
     sub: state.token.sub,

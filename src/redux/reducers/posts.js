@@ -18,6 +18,7 @@ const initialState = {
 }
 
 export default (state = initialState, { type, payload }) => {
+  console.log(payload);
   switch (type) {
     case FETCH_POSTS_PENDING:
       return {
@@ -56,7 +57,8 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        allPosts: [...state.filter(post => post.id !== payload.id)]
+        allPosts: [...state.allPosts.filter(post => post.id !== payload.id)],
+        userPosts: [...state.userPosts.filter(post => post.id !== payload.id)]
       }
     case REMOVE_POST_FAILED:
       return payload

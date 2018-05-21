@@ -89,8 +89,6 @@ export const deleteUsersPost = (id, user_id) => {
   return async dispatch => {
     try {
       let response = await deletePost(id, user_id, localStorage.getItem("token"))
-      console.log('response ==>>', response)
-      console.log('responnse.status ==>>', response.status)
       if (response.status === 204) {
         dispatch({
           type: REMOVE_POST_SUCCESS,
