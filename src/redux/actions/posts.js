@@ -3,6 +3,7 @@ import { getUserById } from '../api/getUserById'
 import { getAllPosts } from '../api/getAllPosts'
 import { getPostsByUserId } from '../api/getPostByUserId'
 import { postPost } from '../api/postPost'
+import { deletePost } from '../api/deletePost'
 
 export const FETCH_POSTS_PENDING = 'FETCH_POSTS_PENDING'
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
@@ -14,6 +15,9 @@ export const FETCH_POSTS_BY_USER_FAILED = 'FETCH_POSTS_BY_USER_FAILED'
 
 export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS'
 export const CREATE_POST_FAILED = 'CREATE_POST_FAILED'
+
+export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS'
+export const REMOVE_POST_FAILED = 'REMOVE_POST_FAILED'
 
 export const fetchPosts = () => {
   return async dispatch => {
@@ -75,6 +79,27 @@ export const createPost = newPost => {
     } catch (err) {
       dispatch({
         type: CREATE_POST_FAILED,
+        payload: err
+      })
+    }
+  }
+}
+
+export const deleteUsersPost = (id, user_id) => {
+  return async dispatch => {
+    try {
+      let response = await deletePost(id, user_id, localStorage.getItem("token"))
+      console.log('response ==>>', response)
+      console.log('responnse.status ==>>', response.status)
+      if (response.status === 204) {
+        dispatch({
+          type: REMOVE_POST_SUCCESS,
+          payload: { id }
+        })
+      }
+    } catch(err) {
+      dispatch({
+        type: REMOVE_POST_FAILED,
         payload: err
       })
     }

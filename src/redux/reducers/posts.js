@@ -6,7 +6,9 @@ import {
   FETCH_POSTS_BY_USER_SUCCESS,
   FETCH_POSTS_BY_USER_FAILED,
   CREATE_POST_SUCCESS,
-  CREATE_POST_FAILED
+  CREATE_POST_FAILED,
+  REMOVE_POST_SUCCESS,
+  REMOVE_POST_FAILED
 } from '../actions/posts'
 
 const initialState = {
@@ -49,6 +51,14 @@ export default (state = initialState, { type, payload }) => {
         allPosts: [{...payload}, ...state.allPosts]
       }
     case CREATE_POST_FAILED:
+      return payload
+    case REMOVE_POST_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        allPosts: [...state.filter(post => post.id !== payload.id)]
+      }
+    case REMOVE_POST_FAILED:
       return payload
     default:
       return state

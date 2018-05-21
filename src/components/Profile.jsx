@@ -69,7 +69,7 @@ class Profile extends Component {
                   </Col>
                 </Responsive>
                 <Col style={{marginTop: 65}} md={{size: 5, offset: 4}}>
-                  <PostList posts={this.props.posts}/>
+                  <PostList posts={this.props.posts} fromUser={true}/>
                 </Col>
               </Row>
             </Container>

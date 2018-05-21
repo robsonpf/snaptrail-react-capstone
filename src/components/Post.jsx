@@ -16,8 +16,7 @@ import {
   Label,
   Dimmer,
   Loader,
-  Dropdown,
-  Link
+  Popup
 } from 'semantic-ui-react'
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
@@ -27,6 +26,7 @@ import { createComment } from '../redux/actions/comments'
 import { createLike } from '../redux/actions/likes'
 import { removeLike } from '../redux/actions/likes'
 import { toggleMap } from '../redux/actions/maps'
+import { deleteUsersPost } from '../redux/actions/posts'
 import Moment from 'react-moment'
 import CommentDropDown from './CommentDropDown'
 import GoogleMap from './GoogleMap'
@@ -46,6 +46,14 @@ class Post extends Component {
     else if (likeOrDislike === "dislike") {
       createOrRemoveLike(like.id)
     }
+  }
+
+  handleDelete = id => {
+    console.log("this.state.fromUser  ======>>>", this.props.fromUser);
+    console.log("this.props.id", id);
+    console.log("this.props.userId", this.props.userId)
+
+    if (this.props.fromUser) this.props.deleteUsersPost(id, this.props.userId)
   }
 
   handleToggleMap = () => {
@@ -72,11 +80,16 @@ class Post extends Component {
           <Loader>Fetching Posts</Loader>
         </Dimmer>
       ) : null}
-
       <Card>
         <CardBody>
-          {/* <Link></Link> */}
-          <Dropdown placeholder='Select Friend' fluid selection options={1, 2, 3}/>
+          { this.props.fromUser ?
+            <Popup
+              key={id}
+              trigger={<Label color='red' floating onClick={e => this.handleDelete(id)}>X</Label>}
+              content="Are you sure you want to delete me? 😢 #Forgotten"
+            /> : null
+          }
+
           <Image
             src={this.props.user_image}
             avatar
@@ -101,27 +114,27 @@ class Post extends Component {
           <CardText style={{ paddingBottom: 0 }}>
             {description}
           </CardText>
-        </CardBody>
-        {!this.state.showMap ? (
-          <CardImg
-            top
-            width="100%"
-            src={image_url}
-            alt="Card image cap"
-          />) : (
-            <Card color='orange' style={{ width: "100%", height: "300px" }}>
-              <GoogleMap
-                fluid
-                label='Map'
-                readOnly={true}
-                location={location}
-                lat={latitude}
-                lng={longitude}
-              />
-            </Card>
-          )
-        }
-        <CardBody>
+          </CardBody>
+          {!this.state.showMap ? (
+            <CardImg
+              top
+              width="100%"
+              src={image_url}
+              alt="Card image cap"
+            />) : (
+              <Card color='orange' style={{ width: "100%", height: "300px" }}>
+                <GoogleMap
+                  fluid
+                  label='Map'
+                  readOnly={true}
+                  location={location}
+                  lat={latitude}
+                  lng={longitude}
+                />
+              </Card>
+            )
+          }
+          <CardBody>
           <CardText className="text-primary">
             {`  `} {this.props.likes.length} {`  `}
             {this.props.likes.length !== 1 ? 'Likes' : 'Like'}
@@ -154,6 +167,7 @@ class Post extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    fromUser: props.fromUser,
     isLoading: state.posts.isLoading,
     showMap: state.maps.showMap,
     user_image: state.users.length > 0
@@ -172,7 +186,8 @@ bindActionCreators({
   createComment,
   createLike,
   removeLike,
-  toggleMap
+  toggleMap,
+  deleteUsersPost
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
