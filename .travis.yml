@@ -1,12 +1,13 @@
 language: node_js
 node_js:
-  - "4"
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+  - npm run build
 deploy:
-provider: surge
-project: ./build
-domain: SnapTrails.surge.sh
-env:
-  - SURGE_LOGIN=fariasrobson.rf@gmail.com
-  - SURGE_TOKEN=a340cdb94dd816d64d5a7709203fccfb
-before_install:
-  - "npm i -g npm@^4"
+  provider: surge
+  project: ./build
+  domain: SnapTrails.surge.sh
