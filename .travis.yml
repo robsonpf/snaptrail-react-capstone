@@ -1,13 +1,12 @@
 language: node_js
 node_js:
-  - "iojs"
-  - "7"
+  - "4"
 deploy:
-  provider: surge
-  project: ./build
-  domain: SnapTrails.surge.sh
+provider: surge
+project: ./build
+domain: SnapTrails.surge.sh
 env:
   - SURGE_LOGIN=fariasrobson.rf@gmail.com
   - SURGE_TOKEN=a340cdb94dd816d64d5a7709203fccfb
 before_install:
-  - npm i -g npm@4
+  - "npm i -g npm@^4"
