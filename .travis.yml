@@ -10,3 +10,7 @@ deploy:
   domain: SnapTrails.surge.sh
 script:
   - npm run build
+  - npm start
+addons:
+  apt:
+    update: true
