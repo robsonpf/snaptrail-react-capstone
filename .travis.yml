@@ -6,7 +6,7 @@ cache:
     - node_modules
 deploy:
   provider: surge
-  project: ./build
+  project: ./
   domain: SnapTrails.surge.sh
 script:
   - npm run build
