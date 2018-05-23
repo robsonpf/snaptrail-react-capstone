@@ -26,7 +26,7 @@ On SnapTrails you find your new favorite trail. Get locations, photos from hiker
 
 
 ## Future Features
-* Social Login is single sign-on for end users. Using existing login information from a social network provider like Facebook, Twitter, or Google.
+* Social Login from a social network provider like Facebook, Twitter, or Google.
 * Use Post Ratings plugin to allow users to rate posts.
 * Web scraper to extract weather forecast data from the National Weather Service.
 * Saved posts feature by creating collections were users can save all favorite posts in one place and keep organized.

@@ -18,7 +18,7 @@ const initialState = {
 }
 
 export default (state = initialState, { type, payload }) => {
-  console.log(payload);
+  // console.log(payload);
   switch (type) {
     case FETCH_POSTS_PENDING:
       return {
