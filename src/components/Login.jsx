@@ -28,7 +28,7 @@ class Login extends Component {
 
   getLogin = async (e) => {
     e.preventDefault()
-    
+
     if (this.state.username && this.state.password) {
       this.props.checkLogin({
         username: this.state.username,
