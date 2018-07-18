@@ -31,7 +31,6 @@ export default class CommentDropDown extends Component {
           <FaComment className="text"/> Comment
         </Accordion.Title>
         <Accordion.Content active={activeIndex === -1}  >
-
           {this.props.comments.map(comment => (
             <List.Item key={comment.id}>
               <Feed size='large'>
