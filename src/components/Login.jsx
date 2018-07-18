@@ -8,7 +8,9 @@ import {
   Row,
   Col,
   Alert,
-  Input
+  Input,
+  Nav,
+  NavItem
 } from 'reactstrap'
 import {
   Dimmer,
@@ -85,10 +87,30 @@ class Login extends Component {
                   Either your username or password is incorrect. Please try again.
                 </Alert>
               ) : null}
-              <Button className="mr-3"  type="submit" color="primary">
+              <Button
+                className="mr-3"
+                type="submit"
+                color="primary"
+                style={{
+                  float: "left"
+                }}
+              >
                 Submit
               </Button>
-              <Link to="/signup" className="nav-item">Not a member?</Link>
+              {/* <Nav className="ml-auto">
+              <NavItem> */}
+              <Link
+                to="/signup" cl
+                className="nav-link"
+                style={{
+                  float: "left",
+                  marginTop: "0.5em"
+                }}
+              >
+                Not a member?
+              </Link>
+              {/* </NavItem>
+              </Nav> */}
             </Form>
           </Col>
         </Row>
