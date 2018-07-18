@@ -74,7 +74,7 @@ export const createPost = newPost => {
       const signedInUser = await userReponse.json()
       dispatch({
         type: CREATE_POST_SUCCESS,
-        payload: { ...post[0], user: {...signedInUser}}
+        payload: { ...post[0], user: {...signedInUser} }
       })
     } catch (err) {
       dispatch({
