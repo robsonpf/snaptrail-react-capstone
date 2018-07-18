@@ -31,7 +31,6 @@ class GoogleMap extends Component {
         showingInfoWindow: false
       });
     }
-
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -67,7 +66,7 @@ class GoogleMap extends Component {
         onClick={this.onMapClicked}
       >
         {!this.props.readOnly ?
-          this.state.Marker
+          (this.props.reset && this.state.Marker)
         : !this.props.showAll ?
           <Marker
             name={this.props.location}
@@ -93,7 +92,10 @@ class GoogleMap extends Component {
   }
 }
 
-const mapStateToProps = ({ posts }) => ({ posts: posts.allPosts })
+const mapStateToProps = ({ posts, maps }) => ({
+  posts: posts.allPosts,
+  reset: maps.latLng.lat ? true : false
+ })
 
 const mapDispatchToProps = dispatch => bindActionCreators({ setLatLng }, dispatch)
 

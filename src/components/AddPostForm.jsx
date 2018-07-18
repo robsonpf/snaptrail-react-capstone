@@ -10,6 +10,7 @@ import {
   Loader
 } from 'semantic-ui-react'
 import { createPost } from '../redux/actions/posts'
+import { setLatLng } from '../redux/actions/maps'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import GoogleMap from './GoogleMap'
@@ -50,6 +51,10 @@ class AddPostForm extends Component {
         latitude,
         longitude
       })
+      this.props.setLatLng({
+        lat: null,
+        lng: null
+      })
       this.setState({
         image_url: '',
         description: '',
@@ -58,7 +63,6 @@ class AddPostForm extends Component {
         longitude: ''
       })
     }
-    // this.props.toggleForm();
   }
 
   render() {
@@ -125,6 +129,6 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ createPost }, dispatch)
+  bindActionCreators({ createPost, setLatLng }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPostForm)

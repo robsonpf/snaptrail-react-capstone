@@ -55,7 +55,8 @@ class TopNav extends Component {
               <img src="SnapTrails.png" />
               SnapTrails
             </Label>
-          </Link>  
+          </Link>
+
           {this.props.showFilterPost ? (
             <FilterPosts />
           ) : null}
@@ -63,6 +64,7 @@ class TopNav extends Component {
           <NavbarToggler onClick={this.toggle} />
 
           <Collapse isOpen={this.state.isOpen} navbar>
+            
             {!this.props.loggedIn ? (
               <Nav className="ml-auto" navbar>
                 <NavItem>
