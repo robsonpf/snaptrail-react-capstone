@@ -110,27 +110,27 @@ class Post extends Component {
           <CardText style={{ paddingBottom: 0 }}>
             {description}
           </CardText>
-          </CardBody>
-          {!this.state.showMap ? (
-            <CardImg
-              top
-              width="100%"
-              src={image_url}
-              alt="Card image cap"
-            />) : (
-              <Card color='orange' style={{ width: "100%", height: "300px" }}>
-                <GoogleMap
-                  fluid
-                  label='Map'
-                  readOnly={true}
-                  location={location}
-                  lat={latitude}
-                  lng={longitude}
-                />
-              </Card>
-            )
-          }
-          <CardBody>
+        </CardBody>
+        {!this.state.showMap ? (
+          <CardImg
+            top
+            width="100%"
+            src={image_url}
+            alt="Card image cap"
+          />) : (
+            <Card color='orange' style={{ width: "100%", height: "300px" }}>
+              <GoogleMap
+                fluid
+                label='Map'
+                readOnly={true}
+                location={location}
+                lat={latitude}
+                lng={longitude}
+              />
+            </Card>
+          )
+        }
+        <CardBody>
           <CardText className="text-primary">
             {`  `} {this.props.likes.length} {`  `}
             {this.props.likes.length !== 1 ? 'Likes' : 'Like'}
