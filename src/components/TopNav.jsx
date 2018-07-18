@@ -64,7 +64,7 @@ class TopNav extends Component {
           <NavbarToggler onClick={this.toggle} />
 
           <Collapse isOpen={this.state.isOpen} navbar>
-            
+
             {!this.props.loggedIn ? (
               <Nav className="ml-auto" navbar>
                 <NavItem>

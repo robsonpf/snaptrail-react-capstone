@@ -97,8 +97,6 @@ class Login extends Component {
               >
                 Submit
               </Button>
-              {/* <Nav className="ml-auto">
-              <NavItem> */}
               <Link
                 to="/signup"
                 className="nav-link"
@@ -109,8 +107,6 @@ class Login extends Component {
               >
                 Not a member?
               </Link>
-              {/* </NavItem>
-              </Nav> */}
             </Form>
           </Col>
         </Row>
