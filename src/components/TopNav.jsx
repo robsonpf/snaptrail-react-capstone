@@ -55,14 +55,13 @@ class TopNav extends Component {
               <img src="SnapTrails.png" />
               SnapTrails
             </Label>
-          </Link>
-          {/* <Link to="/" style={{ fontSize: 30 }}>
-            SnapTrails
-          </Link> */}
+          </Link>  
           {this.props.showFilterPost ? (
             <FilterPosts />
           ) : null}
+
           <NavbarToggler onClick={this.toggle} />
+
           <Collapse isOpen={this.state.isOpen} navbar>
             {!this.props.loggedIn ? (
               <Nav className="ml-auto" navbar>
@@ -78,6 +77,7 @@ class TopNav extends Component {
               </Nav>
             ) : (
               <Nav className="ml-auto" navbar>
+
                 <NavItem>
                   <Link
                     to={`${this.props.user}`}
@@ -95,9 +95,11 @@ class TopNav extends Component {
                     </Feed.User>
                   </Link>
                 </NavItem>
+
                 <NavItem style={{ paddingTop: "3.5px" }}>
                   <Link to="/home" className="nav-link">Home</Link>
                 </NavItem>
+
                 <NavItem style={{ paddingTop: "3.5px" }}>
                   <Link
                     to="/login"

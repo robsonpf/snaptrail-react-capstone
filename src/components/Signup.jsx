@@ -39,7 +39,7 @@ export class Signup extends Component {
         isValid: false
         })
       } else if (username && email && password) {
-        let newUser = {username, email, password}
+        let newUser = {username, email, password};
         this.setState({
           isValid: true,
           isFormValid: true

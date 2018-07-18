@@ -13,10 +13,15 @@ export const checkLogin = (user, history) => {
       dispatch({ type: LOGIN_PENDING })
 
       const response = await postLogin(user)
+      console.log("res",response);
       const token = response.headers.get("Authorization")
+      console.log("tok",token);
       const result = decode(token)
+      console.log("res",result);
       const userReponse = await getUserById(result.sub.id)
+      console.log("use", userReponse);
       const signedInUser = await userReponse.json()
+      console.log("sig",signedInUser);
 
       dispatch({
         type: SET_TOKEN_SUCCESS,
