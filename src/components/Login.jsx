@@ -100,7 +100,7 @@ class Login extends Component {
               {/* <Nav className="ml-auto">
               <NavItem> */}
               <Link
-                to="/signup" cl
+                to="/signup"
                 className="nav-link"
                 style={{
                   float: "left",

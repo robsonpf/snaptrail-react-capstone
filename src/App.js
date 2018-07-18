@@ -5,7 +5,7 @@ import Profile from './components/Profile'
 import Feed from './components/Feed'
 import Home from './components/Home'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 export default class App extends Component {
   render() {
