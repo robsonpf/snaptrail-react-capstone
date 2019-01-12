@@ -102,7 +102,7 @@ class AddPostForm extends Component {
               placeholder='Location'
               onChange={e => this.setState({ location: e.target.value })}/>
             <Label image as='a' size={"big"} className="text-primary">
-              <img src='http://www.iosicongallery.com/img/1024/google-maps-2014-11-12.png' />
+              <img src='https://hotgeo.ru/uploads/posts/2018-07/1532879738_kapri-2.jpg' />
               Map: Drop Marker on your trail!
             </Label>
             <Card color='teal' style={{ width: "100%", height: "300px" }}>
