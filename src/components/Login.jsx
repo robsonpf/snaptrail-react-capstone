@@ -44,7 +44,7 @@ class Login extends Component {
     return (
       <Container className="main-wrapper">
         {this.props.isLoading ? (
-          <Dimmer active>
+          <Dimmer>
             <Loader>Fetching Data</Loader>
           </Dimmer>
         ) : null}
